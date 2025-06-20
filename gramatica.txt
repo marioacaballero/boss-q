@@ -1,0 +1,17 @@
+Consigna
+
+1. Un programa está compuesto por una sección de declaración de variables y un cuerpo.
+2. Existen dos tipos de variables: reales y cadenas de caracteres. Todas las variables deben ser declaradas. Las
+cadenas pueden contener hasta 1000 caracteres.
+3. El cuerpo es una secuencia de sentencias entre algún tipo de separadores, ya sean palabras reservadas (como
+begin y end u otras) o símbolos (como llaves u otros).
+4. Una sentencia puede ser una asignación, una lectura, una escritura, un Si-Entonces-Sino o un ciclo tipo
+Mientras.
+5. El lado derecho de una asignación puede ser una expresión aritmética sobre números reales, que incluye suma,
+resta, producto, división, potencia y raíz. Se deben definir prioridades entre los operadores y su asociatividad
+debe ser por izquierda. También puede ser una operación sobre cadenas, que puede incluir: concatenación
+(+), extracción de subcadena (subcadena(s, inicio, longitud)), búsqueda de una subcadena dentro de otra
+(buscar(s1, s2) devuelve posición o -1) y obtención de longitud (longitud(s)). También se permiten constantes
+cadena. Las cadenas pueden ocupar más de una línea. Se permitirá el uso de paréntesis.
+
+CFG

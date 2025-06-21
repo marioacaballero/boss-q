@@ -7,8 +7,11 @@ Const
   Fr = [6,12];
   FinArch = #0;
   maxsim = 200;
-  palres: array[1..10] Of string = ('program', 'begin', 'end', 'if', 'then',
-                                    'else', 'while', 'do', 'read', 'write');
+  palres: array[1..11] Of string = ('root','program','find','long','if','then',
+                                    'else','while','pow','read','write');
+
+  // pow = potencia - root = raiz
+  // substr = subcadena - long = longitud
 
 Type 
   SigmaReal = (Dig, Signo, Punto, Coma, OtraC);
@@ -20,7 +23,8 @@ Type
                            Tparentisiscierra
                            ,Tmas,Tmenos,TProducto,T_division,Tptoycoma,Tcoma,
                            Tpunto,Toperadorrealacional,Toperadorasignacion,
-                           ErrorGramatical, Pesos, TparReservada);
+                           ErrorGramatical, Pesos, TparReservada, T_llaveabre,
+                           T_llavecierra);
   TElemTS = Record
     compLex: TipoSimboloGramatical;
     Lexema: String;
@@ -153,8 +157,20 @@ Begin
              End;
         ')':
              Begin
-               lexema := ')';
+               lexema := '(';
                complex := Tparentisiscierra;
+               control := control + 1;
+             End;
+        '{':
+             Begin
+               lexema := '{';
+               complex := T_llaveabre;
+               control := control + 1;
+             End;
+        '}':
+             Begin
+               lexema := '}';
+               complex := T_llavecierra;
                control := control + 1;
              End;
         ';':

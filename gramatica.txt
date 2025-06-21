@@ -15,3 +15,15 @@ debe ser por izquierda. También puede ser una operación sobre cadenas, que pue
 cadena. Las cadenas pueden ocupar más de una línea. Se permitirá el uso de paréntesis.
 
 CFG
+ 
+Programa -> program id; {Cuerpo}  
+Cuerpo ->  Cuerpo Sentencia;  | epsilon
+Sentencia -> Cíclica | Condicional | Asignación | Lectura | Escritura
+Asignación -> id operadorasignacion ExpresionAritmetica | id operadorasignacion Operacioncadena
+ExpresionAritmetica -> constreal | id | ExpresionAritmetica + ExpresionAritmetica | ExpresionAritmetica - ExpresionAritmetica | ExpresionAritmetica * ExpresionAritmetica | ExpresionAritmetica / ExpresionAritmetica | (ExpresionAritmetica) | ExpresionAritmetica ^ ExpresionAritmetica | sqrt ExpresionAritmetica 
+Operacioncadena -> constcadena | id | Operacioncadena + Operacioncadena | subcadena(Operacioncadena) | buscar (Operacioncadena) | longitud (Operacioncadena)
+Cíclica -> while Condicion { Cuerpo }
+Condicional -> if Condicion { Cuerpo } 
+Condición -> Condicion oprelacional Condicion | Condicion oplogico Condicion | (Condicion) | ExpresionAritmetica | Operacioncadena
+Lectura -> read(constreal) | read(constcadena) 
+Escritura - > write(Escritura) | constcadena | constreal 

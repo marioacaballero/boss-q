@@ -31,6 +31,8 @@ Var
 Begin
   LeerCar(Fuente, control, Car);
   Case Car Of 
+    '{': EsSimboloEspecial := True;
+    '}': EsSimboloEspecial := True;
     '(': EsSimboloEspecial := True;
     ')': EsSimboloEspecial := True;
     ';': EsSimboloEspecial := True;

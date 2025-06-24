@@ -22,14 +22,21 @@ relacionales podrán comparar valores reales o cadenas.
 
 CFG
  
-Programa -> program id; {Cuerpo}  
+Programa -> program id; Declaracion {Cuerpo} 
+Declaracion (tener en cuenta el tipado) 
 Cuerpo ->  Cuerpo Sentencia;  | epsilon
 Sentencia -> Cíclica | Condicional | Asignación | Lectura | Escritura
 Asignación -> id operadorasignacion ExpresionAritmetica | id operadorasignacion Operacioncadena
-ExpresionAritmetica -> constreal | id | ExpresionAritmetica + ExpresionAritmetica | ExpresionAritmetica - ExpresionAritmetica | ExpresionAritmetica * ExpresionAritmetica | ExpresionAritmetica / ExpresionAritmetica | (ExpresionAritmetica) | ExpresionAritmetica ^ ExpresionAritmetica | sqrt ExpresionAritmetica 
-Operacioncadena -> constcadena | id | Operacioncadena + Operacioncadena | subcadena(Operacioncadena) | buscar (Operacioncadena) | longitud (Operacioncadena)
+ExpresionAritmetica -> constreal | id | ExpresionAritmetica + ExpresionAritmetica | ExpresionAritmetica - ExpresionAritmetica | ExpresionAritmetica * ExpresionAritmetica | ExpresionAritmetica / ExpresionAritmetica | (ExpresionAritmetica) | ExpresionAritmetica ^ ExpresionAritmetica
+Operacioncadena -> constcadena | id | Operacioncadena + Operacioncadena | subcadena(Operacioncadena, ExpresionAritmetica, ExpresionAritmetica) | buscar (Operacioncadena) | longitud (Operacioncadena)
 Cíclica -> while Condicion { Cuerpo }
 Condicional -> if Condicion { Cuerpo } 
-Condición -> Condicion oprelacional Condicion | Condicion oplogico Condicion | (Condicion) | ExpresionAritmetica | Operacioncadena
-Lectura -> read(constreal) | read(constcadena) 
-Escritura - > write(Escritura) | constcadena | constreal 
+Condición -> ExpresionAritmetica oprelacional ExpresionAritmetica | Condicion & Condicion | Condicion ~ Condicion | !Condicion | [Condicion]
+Lectura -> read(ExpresionAritmetica, id)
+Escritura -> write(ListaExp)
+ListaExp -> ListaExp,ExpresionAritmetica | ExpresionAritmetica
+
+Nota: colocar ambas expresiones en una sola, el tipo de dato lo define la semantica
+Los operadores logicos van individuales
+Cambiar las funciones y colocar sus parametros
+

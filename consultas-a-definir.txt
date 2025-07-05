@@ -17,4 +17,4 @@ Definiciones
 - Operadores logicos
  NOT -> !
  AND -> &
- OR -> ~
+ OR -> ~ 

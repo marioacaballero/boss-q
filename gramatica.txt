@@ -22,19 +22,23 @@ relacionales podrán comparar valores reales o cadenas.
 
 CFG
  
-Programa -> program id; Declaracion {Cuerpo} 
-Declaracion (tener en cuenta el tipado) 
+Programa -> program id; BloqueVar {Cuerpo} 
+<BloqueVar> ::= “var” <ListaDefVar> 
+<ListaDefVar> ::= <DefVar> “;” <ListaDefVar> | <DefVar> “;” 
+<DefVar> ::= “id” “:” <Type> “;”
+        <Type> ::= "Float" | “Integer” | “Char” | “String” | “Boolean” 
 Cuerpo ->  Cuerpo Sentencia;  | epsilon
 Sentencia -> Cíclica | Condicional | Asignación | Lectura | Escritura
-Asignación -> id operadorasignacion ExpresionAritmetica | id operadorasignacion Operacioncadena
-ExpresionAritmetica -> constreal | id | ExpresionAritmetica + ExpresionAritmetica | ExpresionAritmetica - ExpresionAritmetica | ExpresionAritmetica * ExpresionAritmetica | ExpresionAritmetica / ExpresionAritmetica | (ExpresionAritmetica) | ExpresionAritmetica ^ ExpresionAritmetica
-Operacioncadena -> constcadena | id | Operacioncadena + Operacioncadena | subcadena(Operacioncadena, ExpresionAritmetica, ExpresionAritmetica) | buscar (Operacioncadena) | longitud (Operacioncadena)
+Asignación -> id operadorasignacion Expresion
+Expresion -> constreal | id | Expresion + Expresion | Expresion - Expresion | Expresion * Expresion | Expresion / Expresion | (Expresion) | pow(Expresion, Expresion) | root(Expresion, Expresion) | constcadena | subcadena(Expresion, Expresion, Expresion) | find(Expresion, Expresion) | long(Expresion)
 Cíclica -> while Condicion { Cuerpo }
-Condicional -> if Condicion { Cuerpo } 
-Condición -> ExpresionAritmetica oprelacional ExpresionAritmetica | Condicion & Condicion | Condicion ~ Condicion | !Condicion | [Condicion]
-Lectura -> read(ExpresionAritmetica, id)
+Condicional -> if Condicion { Cuerpo } else {Cuerpo} | if Condicion { Cuerpo }
+Condición -> Expresion oprelacional Expresion | Condicion & Condicion | Condicion ~ Condicion | !Condicion | [Condicion]
+Lectura -> read(Expresion, id)
 Escritura -> write(ListaExp)
-ListaExp -> ListaExp,ExpresionAritmetica | ExpresionAritmetica
+ListaExp -> ListaExp,Expresion | Expresion
+
+
 
 Nota: colocar ambas expresiones en una sola, el tipo de dato lo define la semantica
 Los operadores logicos van individuales

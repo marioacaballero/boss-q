@@ -4,11 +4,16 @@ Unit auxiliares;
 Interface
 
 Const 
+  resquant = 18;
   Fr = [6,12];
   FinArch = #0;
   maxsim = 200;
-  palres: array[1..11] Of string = ('root','program','find','long','if','then',
-                                    'else','while','pow','read','write');
+  palres: array[1..resquant] Of string = ('root','program', 'var', 'find',
+                                          'float',
+                                          'integer', 'char', 'string', 'boolean'
+                                          ,
+                                          'long','if','then', 'subcadena',
+                                          'else','while','pow','read','write');
 
   // pow = potencia - root = raiz
   // substr = subcadena - long = longitud
@@ -24,7 +29,7 @@ Type
                            ,Tmas,Tmenos,TProducto,T_division,Tptoycoma,Tcoma,
                            Tpunto,Toperadorrealacional,Toperadorasignacion,
                            ErrorGramatical, Pesos, TparReservada, T_llaveabre,
-                           T_llavecierra);
+                           T_llavecierra, T_oplog, T_corchabre, T_corchcierra);
   TElemTS = Record
     compLex: TipoSimboloGramatical;
     Lexema: String;
@@ -86,12 +91,12 @@ Var i: byte;
 Begin
   initTS(TS);
 
-  For i:= 1 To 10 Do
+  For i:= 1 To resquant Do
     Begin
       TS.elem[i].compLex := TparReservada;
       TS.elem[i].Lexema := palres[i];
     End;
-  ts.cant := 10;
+  ts.cant := resquant;
 End;
 
 Procedure buscarenTS(TS: TablaDeSimbolos; lexema: String; Var complex:
@@ -146,6 +151,18 @@ Begin
       complex := Toperadorasignacion;
       control := control + 2;
     End
+  Else If (car = '>') And (car2 = '=') Then
+         Begin
+           lexema := '>=';
+           complex := Toperadorrealacional;
+           control := control + 2;
+         End
+  Else If (car = '<') And (car2 = '=') Then
+         Begin
+           lexema := '<=';
+           complex := Toperadorrealacional;
+           control := control + 2;
+         End
   Else
     Begin
       Case Car Of 
@@ -159,6 +176,18 @@ Begin
              Begin
                lexema := '(';
                complex := Tparentisiscierra;
+               control := control + 1;
+             End;
+        '[':
+             Begin
+               lexema := '[';
+               complex := T_corchabre;
+               control := control + 1;
+             End;
+        ']':
+             Begin
+               lexema := ']';
+               complex := T_corchcierra;
                control := control + 1;
              End;
         '{':
@@ -231,6 +260,24 @@ Begin
              Begin
                lexema := '/';
                complex := T_division;
+               control := control + 1;
+             End;
+        '!':
+             Begin
+               lexema := '!';
+               complex := T_oplog;
+               control := control + 1;
+             End;
+        '&':
+             Begin
+               lexema := '&';
+               complex := T_oplog;
+               control := control + 1;
+             End;
+        '~':
+             Begin
+               lexema := '~';
+               complex := T_oplog;
                control := control + 1;
              End;
       End;

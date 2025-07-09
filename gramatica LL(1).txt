@@ -1,0 +1,122 @@
+BNF
+
+<Programa> ::= "program" "id" ";" <BloqueVar> "{" <Cuerpo> "}" 
+<BloqueVar> ::= "var" <ListaDefVar> | eps
+<ListaDefVar> ::= <DefVar> ";" <ListaDefVar> | <DefVar> ";" 
+<DefVar> ::= "id" ":" <Type> ";"
+<Type> ::= "Float" | "Integer" | "Char" | "String" | "Boolean" 
+<Cuerpo> ::=  <Cuerpo> <Sentencia>;  | eps
+<Sentencia> ::= <Cíclica> | <Condicional> | <Asignación> | <Lectura> | <Escritura>
+<Asignación> ::= "id" ":=" <Expresion>
+<Expresion> ::= "constreal" | "id" | <Expresion> "+" <Expresion> | <Expresion> "-" <Expresion> | <Expresion> "*" <Expresion> | <Expresion> "/" <Expresion> | "("<Expresion>")" | "pow""("<Expresion>, <Expresion>")" | "root""("<Expresion>, <Expresion>")" | "constcadena" | "subcadena""("<Expresion>, <Expresion>, <Expresion>")" | "find""("<Expresion>, <Expresion>")" | "long""("<Expresion>")"
+<Cíclica> ::= "while" <Condicion> "{" <Cuerpo> "}"
+<Condicional> ::= if <Condicion> "{" <Cuerpo> "}" "else" "{"<Cuerpo>"}" | "if" <Condicion> "{" <Cuerpo> "}"
+<Condición> ::= <Expresion> <Oprelacional> <Expresion> | <Condicion> "&" <Condicion> | <Condicion> "~" <Condicion> | "!"<Condicion> | "["<Condicion>"]"
+<Oprelacional> ::= ">=" | "<=" | "<" | ">" | "!=" | "="
+<Lectura> ::= "read""("<Expresion>, "id"")"
+<Escritura> ::= "write""("<ListaExp>")"
+<ListaExp> ::= <ListaExp>","<Expresion> | <Expresion>
+
+--------------------------------------------------------------------------
+
+Sacamos amb y agregamos prioridades
+
+P ::= program id ; B { F }
+B ::= var L | eps
+L ::= V ; L | V ;
+V ::= id : Y ;  
+Y ::= Float | Integer | Char | String | Boolean
+F ::=  F S;  | eps
+S ::= G | I | A | R | W
+A ::= id := E
+E ::= E + T | E - T | T
+T ::= T * E | T / E | (E) | C
+C ::= C ^ E | constreal | id | constcadena | subcadena(E, E, E) | find(E, E) | long(E)
+G ::= while D { F }
+I ::= if D { F } else {F} | if D { F }
+D ::= EOE | !D | [D] | D&EOE | D~EOE
+O ::= >= | <= | < | > | != | =
+R ::= read(E, id)
+W ::= write(K)
+K ::= K,E | E
+
+
+P --> <Programa>
+A --> <Asignación>
+B --> <BloqueVar>
+C --> <Expresion3>
+D --> <Condicion>
+E --> <Expresion>
+F --> <Cuerpo>
+G --> <Cíclica>
+I --> <Condicional>
+K --> <ListaExp>
+L --> <ListaDefVar>
+O --> <Oprelacional>
+R --> <Lectura>
+S --> <Sentencia>
+T --> <Expresion2>
+V --> <DefVar>
+W --> <Escritura>
+Y --> <Type>
+
+
+--------------------------------------------------------------------------------------------
+
+Sacar RI en E, T, C, D, K
+
+P  ::= program id ; B { F }
+B  ::= var L | eps
+L  ::= V ; L | V ;
+V  ::= id : Y ;  
+Y  ::= Float | Integer | Char | String | Boolean
+F  ::= S;F | eps
+S  ::= G | I | A | R | W
+A  ::= id := E
+E  ::= TE'
+E' ::= +TE' | -TE' | eps
+T  ::= (E)T' | CT'
+T' ::= *ET' | /ET' | eps
+C  ::= constreal C' | id C' | constcadena C' | subcadena(E, E, E) C' | find(E, E) C' | long(E) C'
+C' ::= ^EC' | eps
+G  ::= while D { F }
+I  ::= if D { F } else {F} | if D { F }
+D  ::= EOED' | !DD' | [D]D'
+D' ::= &EOED' | ~EOED' | eps
+O  ::= >= | <= | < | > | != | =
+R  ::= read(E, id)
+W  ::= write(K)
+K  ::= EK'
+K' ::= ,EK' | eps
+
+
+-----------------------------------------------------------------------------------------------
+
+Factorizando
+
+P  ::= program id ; B { F }
+B  ::= var L | eps
+L  ::= V;X
+X  ::= L | eps
+V  ::= id : Y ;  
+Y  ::= Float | Integer | Char | String | Boolean
+F  ::= S;F | eps
+S  ::= G | I | A | R | W
+A  ::= id := E
+E  ::= TE'
+E' ::= +TE' | -TE' | eps
+T  ::= (E)T' | CT'
+T' ::= *ET' | /ET' | eps
+C  ::= constreal C' | id C' | constcadena C' | subcadena(E, E, E) C' | find(E, E) C' | long(E) C'
+C' ::= ^EC' | eps
+G  ::= while D { F }
+I  ::= if D{F}M
+M  ::= else {F} | eps
+D  ::= EOED' | !DD' | [D]D'
+D' ::= &EOED' | ~EOED' | eps
+O  ::= >Ñ | <Ñ | != | =
+Ñ  ::= = | eps
+R  ::= read(E, id)
+W  ::= write(K)
+K  ::= EK'
+K' ::= ,EK' | eps

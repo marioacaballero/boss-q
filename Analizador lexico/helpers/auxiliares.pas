@@ -4,18 +4,17 @@ Unit auxiliares;
 Interface
 
 Const 
-  resquant = 18;
+  resquant = 17;
   Fr = [6,12];
   FinArch = #0;
   maxsim = 200;
-  palres: array[1..resquant] Of string = ('root','program', 'var', 'find',
+  palres: array[1..resquant] Of string = ('program', 'var', 'find',
                                           'float',
                                           'integer', 'char', 'string', 'boolean'
                                           ,
                                           'long','if','then', 'subcadena',
                                           'else','while','pow','read','write');
 
-  // pow = potencia - root = raiz
   // substr = subcadena - long = longitud
 
 Type 
@@ -29,7 +28,8 @@ Type
                            ,Tmas,Tmenos,TProducto,T_division,Tptoycoma,Tcoma,
                            Tpunto,Toperadorrealacional,Toperadorasignacion,
                            ErrorGramatical, Pesos, TparReservada, T_llaveabre,
-                           T_llavecierra, T_oplog, T_corchabre, T_corchcierra);
+                           T_llavecierra, T_oplog, T_corchabre, T_corchcierra,
+                           Tpot);
   TElemTS = Record
     compLex: TipoSimboloGramatical;
     Lexema: String;
@@ -166,6 +166,12 @@ Begin
   Else
     Begin
       Case Car Of 
+        '^':
+             Begin
+               lexema := '^';
+               complex := Tpot;
+               control := control + 1;
+             End;
         '(':
              Begin
                lexema := '(';

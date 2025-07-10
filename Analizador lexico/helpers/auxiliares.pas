@@ -27,7 +27,7 @@ Type
                            Tparentisiscierra
                            ,Tmas,Tmenos,TProducto,T_division,Tptoycoma,Tcoma,
                            Tpunto,Toperadorrealacional,Toperadorasignacion,
-                           ErrorGramatical, Pesos, TparReservada, T_llaveabre,
+                           ErrorLex, Pesos, TparReservada, T_llaveabre,
                            T_llavecierra, T_oplog, T_corchabre, T_corchcierra,
                            Tpot);
   TElemTS = Record

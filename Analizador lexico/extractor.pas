@@ -36,31 +36,33 @@ Begin
       LeerCar(Fuente, control, car);
     End;
   controlAux := control;
-  If EsIdentificador(Fuente,Control,Lexema) Then
-    Begin
-      InstalarEnTS(Lexema,TS,CompLex);
-    End
-  Else If EsConstanteCadena(Fuente,Control,Lexema) Then
-         CompLex := Tccadena
-  Else If EsConstanteReal(Fuente,Control,Lexema) Then
-         CompLex := Tcreal
-  Else If EsConstanteEntera(Fuente,Control,Lexema) Then
-         Begin
-           CompLex := Tcentera;
-         End
-  Else If EsSimboloEspecial(Fuente,Control) Then
-         SimboloEspecial(Fuente, control, Lexema, CompLex)
+  If (car = FinArch) Then CompLex := Pesos
   Else
     Begin
-      Lexema := car;
-      CompLex := ErrorGramatical;
+
+      If EsIdentificador(Fuente,Control,Lexema) Then
+        Begin
+          InstalarEnTS(Lexema,TS,CompLex);
+        End
+      Else If EsConstanteCadena(Fuente,Control,Lexema) Then
+             CompLex := Tccadena
+      Else If EsConstanteReal(Fuente,Control,Lexema) Then
+             CompLex := Tcreal
+                        // Else If EsConstanteEntera(Fuente,Control,Lexema) Then
+                        //        Begin
+                        //          CompLex := Tcentera;
+                        //        End
+      Else If EsSimboloEspecial(Fuente,Control) Then
+             SimboloEspecial(Fuente, control, Lexema, CompLex)
+      Else
+        Begin
+          Lexema := car;
+          CompLex := ErrorLex;
+        End;
+      If controlAux = Control Then
+        Control := control + 1;
+      // 
     End;
-  If controlAux = Control Then
-    Control := control + 1;
-  If car = FinArch Then
-    WriteLn(Pesos, ' $')
-  Else
-    WriteLn(CompLex, ' | ', Lexema);
 End;
 
 End.

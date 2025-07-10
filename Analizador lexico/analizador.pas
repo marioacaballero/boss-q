@@ -21,11 +21,10 @@ Begin
   control := 0;
   cargarPalRes(TS);
   ObtenerSiguienteCompLex(fuente, control, complex, lexema, ts);
-  LeerCar(fuente, control, car);
-  While (car <> FinArch) Do
+  While (complex <> Pesos) And (complex <> ErrorLex) Do
     Begin
       ObtenerSiguienteCompLex(fuente, control, complex, lexema, ts);
-      LeerCar(fuente, control, car);
+      WriteLn(CompLex, ' | ', Lexema);
     End;
   // For i:= 1 To ts.cant Do
   //   Begin

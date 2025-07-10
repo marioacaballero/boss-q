@@ -24,18 +24,20 @@ Sacamos amb y agregamos prioridades
 P ::= program id ; B { F }
 B ::= var L | eps
 L ::= V ; L | V ;
-V ::= id : Y ;  
-Y ::= Float | Integer | Char | String | Boolean
+V ::= id : Y 
+Y ::= Float | String
 F ::=  F S;  | eps
 S ::= G | I | A | R | W
 A ::= id := E
 E ::= E + T | E - T | T
-T ::= T * E | T / E | (E) | C
-C ::= C ^ E | constreal | id | constcadena | subcadena(E, E, E) | find(E, E) | long(E)
+T ::= T * C | T / C | C
+C ::= C ^ N | N
+N ::= (E) | constreal | id | constcadena | substr(E, E, E) | find(E, E) | long(E) | -N
 G ::= while D { F }
 I ::= if D { F } else {F} | if D { F }
-D ::= EOE | !D | [D] | D&EOE | D~EOE
-O ::= >= | <= | < | > | != | =
+D ::= D"|"O | O
+O ::= O&U | U
+U ::= EoprelE | !U | [D]
 R ::= read(E, id)
 W ::= write(K)
 K ::= K,E | E
@@ -98,8 +100,8 @@ P  ::= program id ; B { F }
 B  ::= var L | eps
 L  ::= V;X
 X  ::= L | eps
-V  ::= id : Y ;  
-Y  ::= Float | Integer | Char | String | Boolean
+V  ::= id : Y  
+Y  ::= Float | String
 F  ::= S;F | eps
 S  ::= G | I | A | R | W
 A  ::= id := E

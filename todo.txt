@@ -1,9 +1,0 @@
-[ ] Agregar los simbolos especiales de los operadores si no estan en los validadores
-[ ] Agregar los operadores compuestos (los que tienen 2 caracteres) en los auxiliares
-[ ] Agregar operadorlogico y oprelacional a simbologramatical de ser necesario
-[ ] Hacer una prueba del analizador lexico
-
-
-[ ] Especificación de la semántica asociada a cada variable de la CFG
-[ ] Comenzar con la parte sintactica
-

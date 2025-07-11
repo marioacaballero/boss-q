@@ -11,7 +11,7 @@ CFG BNF
 <Expresion> ::= "constreal" | "id" | <Expresion> "+" <Expresion> | <Expresion> "-" <Expresion> | "-" <Expresion> | <Expresion> "*" <Expresion> | <Expresion> "/" <Expresion> | "("<Expresion>")" | <Expresion> "^" <Expresion> | "constcadena" | "substr""("<Expresion>, <Expresion>, <Expresion>")" | "find""("<Expresion>, <Expresion>")" | "long""("<Expresion>")"
 <Cíclica> ::= "while" <Condicion> "{" <Cuerpo> "}"
 <Condicional> ::= if <Condicion> "{" <Cuerpo> "}" "else" "{"<Cuerpo>"}" | "if" <Condicion> "{" <Cuerpo> "}"
-<Condición> ::= <Expresion> "oprelacional" <Expresion> | <Condicion> "&" <Condicion> | <Condicion> "|" <Condicion> | "!"<Condicion> | "["<Condicion>"]"
+<Condición> ::= <Expresion> "oprel" <Expresion> | <Condicion> "&" <Condicion> | <Condicion> "|" <Condicion> | "!"<Condicion> | "["<Condicion>"]"
 <Lectura> ::= "read""("<Expresion>, "id"")"
 <Escritura> ::= "write""("<ListaExp>")"
 <ListaExp> ::= <ListaExp>","<Expresion> | <Expresion>

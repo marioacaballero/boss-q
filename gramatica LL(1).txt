@@ -136,3 +136,34 @@ X --> <ListaExp2>
 Y --> <Type>
 Z --> <Condicion4>
 Δ --> <Condicional2>
+
+EN BNF
+<Programa> ::= "program" "id" ";" <BloqueVar> "{" <Cuerpo> "}"
+<BloqueVar> ::= "var" <ListaDefVar> | eps
+<ListaDefVar> ::= <DefVar> ";" <ListaDefVar2>
+<ListaDefVar2> ::= <ListaDefVar> | eps
+<DefVar> ::= "id" ":" <Type>
+<Type> ::= "Float" | "String"
+<Cuerpo> ::= <Sentencia> ";" <Cuerpo> | eps
+<Sentencia> ::= <Cíclica> | <Condicional> | <Asignación> | <Lectura> | <Escritura>
+<Asignación> ::= "id" ":=" <Exp>
+<Exp> ::= <Exp2> <Exp5>
+<Exp5> ::= "+" <Exp2> <Exp5> | "-" <Exp2> <Exp5> | eps
+<Exp2> ::= <Exp3> <Exp6>
+<Exp6> ::= "*" <Exp3> <Exp6> | "/" <Exp3> <Exp6> | eps
+<Exp3> ::= <Exp4> <Exp7>
+<Exp7> ::= "^" <Exp4> <Exp7> | eps
+<Exp4> ::= "(" <Exp> ")" | "constreal" | "id" | "constcadena" | "substr" "(" <Exp> "," <Exp> "," <Exp> ")" | "find" "(" <Exp> "," <Exp> ")" | "long" "(" <Exp> ")" | "-" <Exp4>
+<Cíclica> ::= "while" <Cond> "{" <Cuerpo> "}"
+<Condicional> ::= "if" <Cond> "{" <Cuerpo> "}" <Condicional2>
+<Condicional2> ::= "else" "{" <Cuerpo> "}" | eps
+<Cond> ::= <Cond2> <Cond4>
+<Cond4> ::= "|" <Cond2> <Cond4> | eps
+<Cond2> ::= <Cond3> <Cond5>
+<Cond5> ::= "&" <Cond3> <Cond5> | eps
+<Cond3> ::= <Exp> "oprel" <Exp> | "!" <Cond3> | "[" <Cond> "]"
+<Lectura> ::= "read" "(" <Exp> "," "id" ")"
+<Escritura> ::= "write" "(" <ListaExp> ")"
+<ListaExp> ::= <Exp> <ListaExp2>
+<ListaExp2> ::= "," <Exp> <ListaExp2> | eps
+

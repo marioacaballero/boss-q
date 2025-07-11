@@ -1,6 +1,11 @@
 
 Program leerTas;
 
+Const variables: array [1..27] Of string = ('tprogram', 'tasignacion', 'tbloquevar', 'texp3', 'tcond', 'texp', 'tcuerpo', 
+                                          'tciclica', 'tcondicional' , 'texp6', 'tlistaexp', 'tlistadefvar', 'texp7', 'texp4', 
+                                          'tlistadefvar2', 'tcond2', 'tcondicional2', 'tcond5', 'tlectura', 'tsentencia', 'texp2', 
+                                          'tcond3', 'tdefvar', 'tescritura', 'tlistaexp2', 'ttype', 'tcond4')
+
 Const simb: array[1..32] Of string = ('program', '{', '}', ';', 'var', 'id',
                                       'Float', 'String', 'oprel', 'while', '(',
                                       ')', 'if', 'read', 'write', 'constreal',

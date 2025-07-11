@@ -1,5 +1,5 @@
 <Programa>~"""program"" ""id"" "";"" <BloqueVar> ""{"" <Cuerpo> ""}"""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-<Asignación>~~~~~~id := E~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<Asignación>~~~~~~"id"":""="<Exp>~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <BloqueVar>~~eps~~~"""var"" <ListaDefVar>"~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <Exp3>~~~~~~<Exp4> <Exp7>~~~~~<Exp4> <Exp7>~~~~~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~~~~~~~~~~~~
 <Cond>~~~~~~<Cond2> <Cond4>~~~~~<Cond2> <Cond4>~~~~~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~~~~~~~<Cond2> <Cond4>~<Cond2> <Cond4>~~~~

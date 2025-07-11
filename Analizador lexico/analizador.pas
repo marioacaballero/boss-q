@@ -16,7 +16,7 @@ Var
   i: byte;
   car: char;
 Begin
-  Assign(fuente, '../fuente.txt');
+  Assign(fuente, '../fuente.bqs');
   Reset(fuente);
   control := 0;
   cargarPalRes(TS);

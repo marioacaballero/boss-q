@@ -1,0 +1,28 @@
+<Programa>~"""program"" ""id"" "";"" <BloqueVar> ""{"" <Cuerpo> ""}"""~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<Asignación>~~~~~~id := E~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<BloqueVar>~~eps~~~"""var"" <ListaDefVar>"~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<Exp3>~~~~~~<Exp4> <Exp7>~~~~~<Exp4> <Exp7>~~~~~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~<Exp4> <Exp7>~~~~~~~~~~~~
+<Cond>~~~~~~<Cond2> <Cond4>~~~~~<Cond2> <Cond4>~~~~~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~<Cond2> <Cond4>~~~~~~~<Cond2> <Cond4>~<Cond2> <Cond4>~~~~
+<Exp>~~~~~~<Exp2> <Exp5>~~~~~<Exp2> <Exp5>~~~~~<Exp2> <Exp5>~<Exp2> <Exp5>~<Exp2> <Exp5>~<Exp2> <Exp5>~<Exp2> <Exp5>~<Exp2> <Exp5>~~~~~~~~~~~~
+<Cuerpo>~~~eps~~~"<Sentencia> "";"" <Cuerpo>"~~~~"<Sentencia> "";"" <Cuerpo>"~~~"<Sentencia> "";"" <Cuerpo>"~"<Sentencia> "";"" <Cuerpo>"~"<Sentencia> "";"" <Cuerpo>"~~~~~~~~~~~~~~~~~~
+<Cíclica>~~~~~~~~~~"""while"" <Cond> ""{"" <Cuerpo> ""}"""~~~~~~~~~~~~~~~~~~~~~~~
+<Exp5>~~~~eps~~~~~eps~~~eps~~~~~~~~~" ""-"" <Exp2> <Exp5>"~"""+"" <Exp2> <Exp5>"~~~~eps~~~~~~~
+<Condicional>~~~~~~~~~~~~~"""if"" <Cond> ""{"" <Cuerpo> ""}"" <Condicional2>"~~~~~~~~~~~~~~~~~~~~
+<Exp6>~~~~eps~~~~~eps~~~eps~~~~~~~~~eps~~" ""*"" <Exp3> <Exp6>"~" ""/"" <Exp3> <Exp6>"~~eps~~~~~~~
+<ListaExp>~~~~~~<Exp> <ListaExp2>~~~~~<Exp> <ListaExp2>~~~~~<Exp> <ListaExp2>~<Exp> <ListaExp2>~<Exp> <ListaExp2>~<Exp> <ListaExp2>~<Exp> <ListaExp2>~<Exp> <ListaExp2>~~~~~~~~~~~~
+<ListaDefVar>~~~~~~"<DefVar> "";"" <ListaDefVar2>"~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<Exp7>~~~~eps~~~~~eps~~~eps~~~~~~~~~eps~~eps~eps~"""^"" <Exp4> <Exp7>"~eps~~~~~~~
+<Exp4>~~~~~~"""id"""~~~~~" ""("" <Exp> "")"""~~~~~"""constreal"""~" ""constcadena"" "~"""substr"" ""("" <Exp> "","" <Exp> "","" <Exp> "")"""~"""find"" ""("" <Exp> "","" <Exp> "")"""~"""long"" ""("" <Exp> "")"""~"""-"" <Exp4>"~~~~~~~~~~~~
+<ListaDefVar2>~~eps~~~~<ListaDefVar>~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<Cond2>~~~~~~ <Cond3> <Cond5>~~~~~ <Cond3> <Cond5>~~~~~ <Cond3> <Cond5>~ <Cond3> <Cond5>~ <Cond3> <Cond5>~ <Cond3> <Cond5>~ <Cond3> <Cond5>~ <Cond3> <Cond5>~~~~~~~ <Cond3> <Cond5>~ <Cond3> <Cond5>~~~~
+<Condicional2>~~~~eps~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""else"" ""{"" <Cuerpo> ""}"""~
+<Cond5>~~eps~~~~~~~~~~~~~~~~~~~~~~~~~"""&"" <Cond3> <Cond5>"~~~eps~eps~~
+<Lectura>~~~~~~~~~~~~~~"""read"" ""("" <Exp> "","" ""id"" "")"""~~~~~~~~~~~~~~~~~~~
+<Sentencia>~~~~~~<Asignación>~~~~<Cíclica>~~~<Condicional>~<Lectura>~<Escritura>~~~~~~~~~~~~~~~~~~
+<Exp2>~~~~~~<Exp3> <Exp6>~~~~~<Exp3> <Exp6>~~~~~<Exp3> <Exp6>~<Exp3> <Exp6>~<Exp3> <Exp6>~<Exp3> <Exp6>~<Exp3> <Exp6>~<Exp3> <Exp6>~~~~~~~~~~~~
+<Cond3>~~~~~~"<Exp> ""oprel"" <Exp>"~~~~~"<Exp> ""oprel"" <Exp>"~~~~~"<Exp> ""oprel"" <Exp>"~"<Exp> ""oprel"" <Exp>"~"<Exp> ""oprel"" <Exp>"~"<Exp> ""oprel"" <Exp>"~"<Exp> ""oprel"" <Exp>"~"<Exp> ""oprel"" <Exp>"~~~~~~~"""!"" <Cond3>"~" ""["" <Cond> ""]"""~~~~
+<DefVar>~~~~~~"""id"" "":"" <Type>"~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<Escritura>~~~~~~~~~~~~~~~"""write"" ""("" <ListaExp> "")"""~~~~~~~~~~~~~~~~~~
+<ListaExp2>~~~~~~~~~~~~eps~~~~~~~~~~~~~~""","" <Exp> <ListaExp2>"~~~~~~~
+<Type>~~~~~~~"""Float"""~"""String"""~~~~~~~~~~~~~~~~~~~~~~~~~
+<Cond4>~~eps~~~~~~~~~~~~~~~~~~~~~~~~~~~~"""|"" <Cond2> <Cond4>"~eps~~

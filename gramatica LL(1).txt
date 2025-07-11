@@ -3,16 +3,15 @@ BNF
 <Programa> ::= "program" "id" ";" <BloqueVar> "{" <Cuerpo> "}" 
 <BloqueVar> ::= "var" <ListaDefVar> | eps
 <ListaDefVar> ::= <DefVar> ";" <ListaDefVar> | <DefVar> ";" 
-<DefVar> ::= "id" ":" <Type> ";"
-<Type> ::= "Float" | "Integer" | "Char" | "String" | "Boolean" 
+<DefVar> ::= "id" ":" <Type>
+<Type> ::= "Float" | "String"
 <Cuerpo> ::=  <Cuerpo> <Sentencia>;  | eps
 <Sentencia> ::= <Cíclica> | <Condicional> | <Asignación> | <Lectura> | <Escritura>
 <Asignación> ::= "id" ":=" <Expresion>
-<Expresion> ::= "constreal" | "id" | <Expresion> "+" <Expresion> | <Expresion> "-" <Expresion> | <Expresion> "*" <Expresion> | <Expresion> "/" <Expresion> | "("<Expresion>")" | "pow""("<Expresion>, <Expresion>")" | "root""("<Expresion>, <Expresion>")" | "constcadena" | "subcadena""("<Expresion>, <Expresion>, <Expresion>")" | "find""("<Expresion>, <Expresion>")" | "long""("<Expresion>")"
+<Expresion> ::= "constreal" | "id" | <Expresion> "+" <Expresion> | <Expresion> "-" <Expresion> | "-" <Expresion> | <Expresion> "*" <Expresion> | <Expresion> "/" <Expresion> | "("<Expresion>")" | <Expresion> "^" <Expresion> | "constcadena" | "substr""("<Expresion>, <Expresion>, <Expresion>")" | "find""("<Expresion>, <Expresion>")" | "long""("<Expresion>")"
 <Cíclica> ::= "while" <Condicion> "{" <Cuerpo> "}"
 <Condicional> ::= if <Condicion> "{" <Cuerpo> "}" "else" "{"<Cuerpo>"}" | "if" <Condicion> "{" <Cuerpo> "}"
-<Condición> ::= <Expresion> <Oprelacional> <Expresion> | <Condicion> "&" <Condicion> | <Condicion> "~" <Condicion> | "!"<Condicion> | "["<Condicion>"]"
-<Oprelacional> ::= ">=" | "<=" | "<" | ">" | "!=" | "="
+<Condición> ::= <Expresion> "oprelacional" <Expresion> | <Condicion> "&" <Condicion> | <Condicion> "|" <Condicion> | "!"<Condicion> | "["<Condicion>"]"
 <Lectura> ::= "read""("<Expresion>, "id"")"
 <Escritura> ::= "write""("<ListaExp>")"
 <ListaExp> ::= <ListaExp>","<Expresion> | <Expresion>
@@ -35,12 +34,78 @@ C ::= C ^ N | N
 N ::= (E) | constreal | id | constcadena | substr(E, E, E) | find(E, E) | long(E) | -N
 G ::= while D { F }
 I ::= if D { F } else {F} | if D { F }
-D ::= D"|"O | O
+D ::= D|O | O
 O ::= O&U | U
 U ::= EoprelE | !U | [D]
 R ::= read(E, id)
 W ::= write(K)
 K ::= K,E | E
+
+
+--------------------------------------------------------------------------------------------
+
+Sacar RI en E, F, T, C, D, O, K
+
+P ::= program id ; B { F }
+B ::= var L | eps
+L ::= V ; L | V ;
+V ::= id : Y 
+Y ::= Float | String
+F ::= S;F  | eps
+S ::= G | I | A | R | W
+A ::= id := E
+E ::= TH
+H ::= +TH | -TH | eps
+T ::= CJ
+J ::= *CJ | /CJ | eps
+C ::= NM
+M ::= ^NM | eps
+N ::= (E) | constreal | id | constcadena | substr(E, E, E) | find(E, E) | long(E) | -N
+G ::= while D { F }
+I ::= if D { F } else {F} | if D { F }
+D ::= OZ
+Z ::= |OZ | eps
+O ::= UQ
+Q ::= &UQ | eps
+U ::= EoprelE | !U | [D]
+R ::= read(E, id)
+W ::= write(K)
+K ::= EX
+X ::= ,EX | eps
+
+
+-----------------------------------------------------------------------------------------------
+
+Factorizando L, I 
+
+P ::= program id ; B { F }
+B ::= var L | eps
+L ::= V;Ñ
+Ñ ::= L | eps
+V ::= id : Y 
+Y ::= Float | String
+F ::= S;F  | eps
+S ::= G | I | A | R | W
+A ::= id := E
+E ::= TH
+H ::= +TH | -TH | eps
+T ::= CJ
+J ::= *CJ | /CJ | eps
+C ::= NM
+M ::= ^NM | eps
+N ::= (E) | constreal | id | constcadena | substr(E, E, E) | find(E, E) | long(E) | -N
+G ::= while D { F }
+I ::= if D { F } Δ
+Δ ::= else {F} | eps
+D ::= OZ
+Z ::= |OZ | eps
+O ::= UQ
+Q ::= &UQ | eps
+U ::= EoprelE | !U | [D]
+R ::= read(E, id)
+W ::= write(K)
+K ::= EX
+X ::= ,EX | eps
 
 
 P --> <Programa>
@@ -51,74 +116,23 @@ D --> <Condicion>
 E --> <Expresion>
 F --> <Cuerpo>
 G --> <Cíclica>
+H --> <Expresion5>
 I --> <Condicional>
+J --> <Expresion6>
 K --> <ListaExp>
 L --> <ListaDefVar>
-O --> <Oprelacional>
+M --> <Expresion7>
+N --> <Expresion4>
+Ñ --> <ListaDefVar2>
+O --> <Condicion2>
+Q --> <Condicion5>
 R --> <Lectura>
 S --> <Sentencia>
 T --> <Expresion2>
+U --> <Condicion3>
 V --> <DefVar>
 W --> <Escritura>
+X --> <ListaExp2>
 Y --> <Type>
-
-
---------------------------------------------------------------------------------------------
-
-Sacar RI en E, T, C, D, K
-
-P  ::= program id ; B { F }
-B  ::= var L | eps
-L  ::= V ; L | V ;
-V  ::= id : Y ;  
-Y  ::= Float | Integer | Char | String | Boolean
-F  ::= S;F | eps
-S  ::= G | I | A | R | W
-A  ::= id := E
-E  ::= TE'
-E' ::= +TE' | -TE' | eps
-T  ::= (E)T' | CT'
-T' ::= *ET' | /ET' | eps
-C  ::= constreal C' | id C' | constcadena C' | subcadena(E, E, E) C' | find(E, E) C' | long(E) C'
-C' ::= ^EC' | eps
-G  ::= while D { F }
-I  ::= if D { F } else {F} | if D { F }
-D  ::= EOED' | !DD' | [D]D'
-D' ::= &EOED' | ~EOED' | eps
-O  ::= >= | <= | < | > | != | =
-R  ::= read(E, id)
-W  ::= write(K)
-K  ::= EK'
-K' ::= ,EK' | eps
-
-
------------------------------------------------------------------------------------------------
-
-Factorizando
-
-P  ::= program id ; B { F }
-B  ::= var L | eps
-L  ::= V;X
-X  ::= L | eps
-V  ::= id : Y  
-Y  ::= Float | String
-F  ::= S;F | eps
-S  ::= G | I | A | R | W
-A  ::= id := E
-E  ::= TE'
-E' ::= +TE' | -TE' | eps
-T  ::= (E)T' | CT'
-T' ::= *ET' | /ET' | eps
-C  ::= constreal C' | id C' | constcadena C' | subcadena(E, E, E) C' | find(E, E) C' | long(E) C'
-C' ::= ^EC' | eps
-G  ::= while D { F }
-I  ::= if D{F}M
-M  ::= else {F} | eps
-D  ::= EOED' | !DD' | [D]D'
-D' ::= &EOED' | ~EOED' | eps
-O  ::= >Ñ | <Ñ | != | =
-Ñ  ::= = | eps
-R  ::= read(E, id)
-W  ::= write(K)
-K  ::= EK'
-K' ::= ,EK' | eps
+Z --> <Condicion4>
+Δ --> <Condicional2>

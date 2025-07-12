@@ -8,7 +8,7 @@
 - [ ] Hacer una prueba del analizador lexico
 - [x] Acomodar la LL(1)
 - [x] Armar la TAS
-- [ ] Pasar la TAS y LL(1) sin las variables creadas (todo en BNF)
+- [x] Pasar la TAS y LL(1) sin las variables creadas (todo en BNF)
 - [ ] Armar el analizador sintactico
 - [ ] Generarl el arbol de derivacion
 - [ ] Armar la semantica

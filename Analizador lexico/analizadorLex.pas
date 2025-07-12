@@ -1,5 +1,5 @@
 
-Program analizador;
+Program analizadorLex;
 // logica principal del analizador lexico
 
 {$unitPath ./helpers/}

@@ -12,7 +12,7 @@ Type
                      Tid,T_dosp, T_igual,Toprel,Tparentesisabre,
                      Tparentisiscierra,Tcreal,Tccadena,Tmenos,Tmas,TProducto,
                      T_division,Tpot,Tcoma,Tand,Tnot,T_corchabre,Tor,
-                     T_corchcierra,Topasig,eps,Pesos,Programa,Asignacion,
+                     T_corchcierra,Topasig,Pesos,Programa,Asignacion,
                      BloqueVar,Exp3,Cond,Exp,Cuerpo,Ciclica,Exp5,Condicional,
                      Exp6,ListaExp,ListaDefVar,Exp7,Exp4,ListaDefVar2,Cond2,
                      Condicional2,Cond5,Lectura,Sentencia,Exp2,Cond3,DefVar,
@@ -47,14 +47,12 @@ Begin
   // Asignacion
   New(TAS[Asignacion,Tid]);
   TAS[Asignacion,Tid]^.elem[1] := Tid;
-  TAS[Asignacion,Tid]^.elem[2] := T_dosp;
-  TAS[Asignacion,Tid]^.elem[3] := T_igual;
-  TAS[Asignacion,Tid]^.elem[4] := Exp;
-  TAS[Asignacion,Tid]^.cant := 4;
+  TAS[Asignacion,Tid]^.elem[2] := Topasig;
+  TAS[Asignacion,Tid]^.elem[3] := Exp;
+  TAS[Asignacion,Tid]^.cant := 3;
 
   // Bloquevar
   New(TAS[BloqueVar,T_llaveabre]);
-  // TAS[BloqueVar,T_llaveabre]^.elem[1] := eps;
   TAS[BloqueVar,T_llaveabre]^.cant := 0;
 
   New(TAS[BloqueVar,Tvar]);
@@ -195,10 +193,43 @@ Begin
   TAS[Exp, Tmenos]^.elem[2] := Exp5;
   TAS[Exp, Tmenos]^.cant := 2;
 
-  // Cuerpo
+    // Cuerpo
+  
+  New(TAS[Cuerpo, T_llaveabre]);
+  TAS[Cuerpo, T_llaveabre]^.cant := 0;
+  
   New(TAS[Cuerpo, T_llavecierra]);
-  TAS[Cuerpo, T_llavecierra]^.elem[1] := eps;
-  TAS[Cuerpo, T_llavecierra]^.cant := 1;
+  TAS[Cuerpo, T_llavecierra]^.cant := 0;
+
+  New(TAS[Cuerpo, Toprel]);
+  TAS[Cuerpo, Toprel]^.cant := 0;
+
+  New(TAS[Cuerpo, Tparentisiscierra]);
+  TAS[Cuerpo, Tparentisiscierra]^.cant := 0;
+
+  New(TAS[Cuerpo, Tmenos]);
+  TAS[Cuerpo, Tmenos]^.cant := 0;
+  
+  New(TAS[Cuerpo, Tmas]);
+  TAS[Cuerpo, Tmas]^.cant := 0;
+
+  New(TAS[Cuerpo, TProducto]);
+  TAS[Cuerpo, TProducto]^.cant := 0;
+
+  New(TAS[Cuerpo, T_division]);
+  TAS[Cuerpo, T_division]^.cant := 0;
+
+    New(TAS[Cuerpo, Tcoma]);
+  TAS[Cuerpo, Tcoma]^.cant := 0;
+  
+  New(TAS[Cuerpo, Tand]);
+  TAS[Cuerpo, Tand]^.cant := 0;
+
+  New(TAS[Cuerpo, Tor]);
+  TAS[Cuerpo, Tor]^.cant := 0;
+
+  New(TAS[Cuerpo, T_corchcierra]);
+  TAS[Cuerpo, T_corchcierra]^.cant := 0;
 
   New(TAS[Cuerpo, Tid]);
   TAS[Cuerpo, Tid]^.elem[1] := Sentencia;
@@ -240,21 +271,29 @@ Begin
   TAS[Ciclica, Twhile]^.cant := 5;
 
   // Exp5
+  New(TAS[Exp5, T_llaveabre]);
+  TAS[Exp5, T_llaveabre]^.cant := 0;
+  
   New(TAS[Exp5, Tptoycoma]);
-  TAS[Exp5, Tptoycoma]^.elem[1] := eps;
-  TAS[Exp5, Tptoycoma]^.cant := 1;
+  TAS[Exp5, Tptoycoma]^.cant := 0;
 
   New(TAS[Exp5, Toprel]);
-  TAS[Exp5, Toprel]^.elem[1] := eps;
-  TAS[Exp5, Toprel]^.cant := 1;
+  TAS[Exp5, Toprel]^.cant := 0;
 
   New(TAS[Exp5, Tparentisiscierra]);
-  TAS[Exp5, Tparentisiscierra]^.elem[1] := eps;
-  TAS[Exp5, Tparentisiscierra]^.cant := 1;
+  TAS[Exp5, Tparentisiscierra]^.cant := 0;
 
   New(TAS[Exp5, Tcoma]);
-  TAS[Exp5, Tcoma]^.elem[1] := eps;
-  TAS[Exp5, Tcoma]^.cant := 1;
+  TAS[Exp5, Tcoma]^.cant := 0;
+  
+  New(TAS[Exp5, Tand]);
+  TAS[Exp5, Tand]^.cant := 0;
+
+  New(TAS[Exp5, Tor]);
+  TAS[Exp5, Tor]^.cant := 0;
+
+  New(TAS[Exp5, T_corchcierra]);
+  TAS[Exp5, T_corchcierra]^.cant := 0;
 
   New(TAS[Exp5, Tmenos]);
   TAS[Exp5, Tmenos]^.elem[1] := Tmenos;
@@ -279,25 +318,35 @@ Begin
   TAS[Condicional, Tif]^.cant := 6;
 
   // Exp6
+  New(TAS[Exp6, T_llaveabre]);
+  TAS[Exp6, T_llaveabre]^.cant := 0;
+  
   New(TAS[Exp6, Tptoycoma]);
-  TAS[Exp6, Tptoycoma]^.elem[1] := eps;
-  TAS[Exp6, Tptoycoma]^.cant := 1;
+  TAS[Exp6, Tptoycoma]^.cant := 0;
 
   New(TAS[Exp6, Toprel]);
-  TAS[Exp6, Toprel]^.elem[1] := eps;
-  TAS[Exp6, Toprel]^.cant := 1;
+  TAS[Exp6, Toprel]^.cant := 0;
 
   New(TAS[Exp6, Tparentisiscierra]);
-  TAS[Exp6, Tparentisiscierra]^.elem[1] := eps;
-  TAS[Exp6, Tparentisiscierra]^.cant := 1;
+  TAS[Exp6, Tparentisiscierra]^.cant := 0;
 
   New(TAS[Exp6, Tmenos]);
-  TAS[Exp6, Tmenos]^.elem[1] := eps;
-  TAS[Exp6, Tmenos]^.cant := 1;
+  TAS[Exp6, Tmenos]^.cant := 0;
+
+  New(TAS[Exp6, Tmas]);
+  TAS[Exp6, Tmas]^.cant := 0;
 
   New(TAS[Exp6, Tcoma]);
-  TAS[Exp6, Tcoma]^.elem[1] := eps;
-  TAS[Exp6, Tcoma]^.cant := 1;
+  TAS[Exp6, Tcoma]^.cant := 0;
+
+  New(TAS[Exp6, Tand]);
+  TAS[Exp6, Tand]^.cant := 0;
+
+  New(TAS[Exp6, Tor]);
+  TAS[Exp6, Tor]^.cant := 0;
+
+  New(TAS[Exp6, T_corchcierra]);
+  TAS[Exp6, T_corchcierra]^.cant := 0;
 
   New(TAS[Exp6, TProducto]);
   TAS[Exp6, TProducto]^.elem[1] := TProducto;
@@ -360,33 +409,59 @@ Begin
   TAS[ListaDefVar, Tid]^.cant := 3;
 
   // Exp7
+  New(TAS[Exp7, T_llaveabre]);
+  TAS[Exp7, T_llaveabre]^.cant := 0;
+
+  New(TAS[Exp7, T_llavecierra]);
+  TAS[Exp7, T_llavecierra]^.cant := 0;
+
   New(TAS[Exp7, Tptoycoma]);
-  TAS[Exp7, Tptoycoma]^.elem[1] := eps;
-  TAS[Exp7, Tptoycoma]^.cant := 1;
+  TAS[Exp7, Tptoycoma]^.cant := 0;
+
+    New(TAS[Exp7, Tid]);
+  TAS[Exp7, Tid]^.cant := 0;
 
   New(TAS[Exp7, Toprel]);
-  TAS[Exp7, Toprel]^.elem[1] := eps;
-  TAS[Exp7, Toprel]^.cant := 1;
+  TAS[Exp7, Toprel]^.cant := 0;
+
+  New(TAS[Exp7, Twhile]);
+  TAS[Exp7, Twhile]^.cant := 0;
 
   New(TAS[Exp7, Tparentisiscierra]);
-  TAS[Exp7, Tparentisiscierra]^.elem[1] := eps;
-  TAS[Exp7, Tparentisiscierra]^.cant := 1;
+  TAS[Exp7, Tparentisiscierra]^.cant := 0;
+
+  New(TAS[Exp7, Tif]);
+  TAS[Exp7, Tif]^.cant := 0;
+
+  New(TAS[Exp7, Tread]);
+  TAS[Exp7, Tread]^.cant := 0;
+
+  New(TAS[Exp7, Twrite]);
+  TAS[Exp7, Twrite]^.cant := 0;
 
   New(TAS[Exp7, Tmenos]);
-  TAS[Exp7, Tmenos]^.elem[1] := eps;
-  TAS[Exp7, Tmenos]^.cant := 1;
+  TAS[Exp7, Tmenos]^.cant := 0;
+
+  New(TAS[Exp7, Tmas]);
+  TAS[Exp7, Tmas]^.cant := 0;
 
   New(TAS[Exp7, Tcoma]);
-  TAS[Exp7, Tcoma]^.elem[1] := eps;
-  TAS[Exp7, Tcoma]^.cant := 1;
+  TAS[Exp7, Tcoma]^.cant := 0;
 
   New(TAS[Exp7, TProducto]);
-  TAS[Exp7, TProducto]^.elem[1] := eps;
-  TAS[Exp7, TProducto]^.cant := 1;
+  TAS[Exp7, TProducto]^.cant := 0;
 
   New(TAS[Exp7, T_division]);
-  TAS[Exp7, T_division]^.elem[1] := eps;
-  TAS[Exp7, T_division]^.cant := 1;
+  TAS[Exp7, T_division]^.cant := 0;
+
+  New(TAS[Exp7, Tand]);
+  TAS[Exp7, Tand]^.cant := 0;
+
+  New(TAS[Exp7, Tor]);
+  TAS[Exp7, Tor]^.cant := 0;
+
+  New(TAS[Exp7, T_corchcierra]);
+  TAS[Exp7, T_corchcierra]^.cant := 0;
 
   New(TAS[Exp7, Tpot]);
   TAS[Exp7, Tpot]^.elem[1] := Tpot;
@@ -447,8 +522,7 @@ Begin
 
   // ListaDefVar2
   New(TAS[ListaDefVar2, T_llaveabre]);
-  TAS[ListaDefVar2, T_llaveabre]^.elem[1] := eps;
-  TAS[ListaDefVar2, T_llaveabre]^.cant := 1;
+  TAS[ListaDefVar2, T_llaveabre]^.cant := 0;
 
   New(TAS[ListaDefVar2, Tid]);
   TAS[ListaDefVar2, Tid]^.elem[1] := ListaDefVar;
@@ -507,8 +581,7 @@ Begin
 
   // Condicional2
   New(TAS[Condicional2, Tptoycoma]);
-  TAS[Condicional2, Tptoycoma]^.elem[1] := eps;
-  TAS[Condicional2, Tptoycoma]^.cant := 1;
+  TAS[Condicional2, Tptoycoma]^.cant := 0;
 
   New(TAS[Condicional2, Telse]);
   TAS[Condicional2, Telse]^.elem[1] := Telse;
@@ -519,16 +592,13 @@ Begin
 
   // Cond5
   New(TAS[Cond5, T_llaveabre]);
-  TAS[Cond5, T_llaveabre]^.elem[1] := eps;
-  TAS[Cond5, T_llaveabre]^.cant := 1;
+  TAS[Cond5, T_llaveabre]^.cant := 0;
 
   New(TAS[Cond5, Tor]);
-  TAS[Cond5, Tor]^.elem[1] := eps;
-  TAS[Cond5, Tor]^.cant := 1;
+  TAS[Cond5, Tor]^.cant := 0;
 
   New(TAS[Cond5, T_corchcierra]);
-  TAS[Cond5, T_corchcierra]^.elem[1] := eps;
-  TAS[Cond5, T_corchcierra]^.cant := 1;
+  TAS[Cond5, T_corchcierra]^.cant := 0;
 
   New(TAS[Cond5, Tand]);
   TAS[Cond5, Tand]^.elem[1] := Tand;
@@ -685,8 +755,7 @@ Begin
 
   // ListaExp2
   New(TAS[ListaExp2, Tparentisiscierra]);
-  TAS[ListaExp2, Tparentisiscierra]^.elem[1] := eps;
-  TAS[ListaExp2, Tparentisiscierra]^.cant := 1;
+  TAS[ListaExp2, Tparentisiscierra]^.cant := 0;
 
   New(TAS[ListaExp2, Tcoma]);
   TAS[ListaExp2, Tcoma]^.elem[1] := Tcoma;
@@ -705,12 +774,10 @@ Begin
 
   // Cond4
   New(TAS[Cond4, T_llaveabre]);
-  TAS[Cond4, T_llaveabre]^.elem[1] := eps;
-  TAS[Cond4, T_llaveabre]^.cant := 1;
+  TAS[Cond4, T_llaveabre]^.cant := 0;
 
   New(TAS[Cond4, T_corchcierra]);
-  TAS[Cond4, T_corchcierra]^.elem[1] := eps;
-  TAS[Cond4, T_corchcierra]^.cant := 1;
+  TAS[Cond4, T_corchcierra]^.cant := 0;
 
   New(TAS[Cond4, Tor]);
   TAS[Cond4, Tor]^.elem[1] := Tor;

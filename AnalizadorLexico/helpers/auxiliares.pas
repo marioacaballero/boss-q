@@ -3,6 +3,11 @@ Unit auxiliares;
 
 Interface
 
+{$unitPath ../../AnalizadorSintactico/helpers/}
+
+Uses 
+unitInitTAS;
+
 Const 
   resquant = 12;
   Fr = [6,12];
@@ -20,14 +25,8 @@ Type
   Qr = 0..13;
   TipoDeltaReal = Array[Qr,SigmaReal] Of Qr;
 
-  TipoSimboloGramatical = (Tor,Tprogram,Tvar,Tfind,TFloat,TString,Tlong,Tif,
-                           Tsubstr,Telse,Twhile,Tread,Twrite,T_llaveabre,
-                           T_llavecierra,Tptoycoma,Tid,T_dosp, T_igual,Toprel,
-                           Tparentesisabre,Tparentisiscierra,Tcreal,Tccadena,
-                           Tmenos,Tmas,TProducto,T_division,Tpot,Tcoma,Tand,Tnot
-                           ,T_corchabre,T_corchcierra,ErrorLex,Pesos);
   TElemTS = Record
-    compLex: TipoSimboloGramatical;
+    compLex: TipoSimbGramCom;
     Lexema: String;
   End;
   TablaDeSimbolos = Record
@@ -38,10 +37,10 @@ Type
 Procedure LeerCar(Var Fuente:FileOfChar;Var control:
                   Longint; Var car:char);
 Procedure InstalarEnTS(Lexema: String; Var TS:TablaDeSimbolos; Var CompLex:
-                       TipoSimboloGramatical);
+                       TipoSimbGramCom);
 Procedure cargarPalRes(Var TS: TablaDeSimbolos);
 Procedure SimboloEspecial(Var fuente: FileOfChar; Var control: LongInt; Var
-                          lexema: String; Var complex: TipoSimboloGramatical);
+                          lexema: String; Var complex: TipoSimbGramCom);
 
 Implementation
 
@@ -89,14 +88,14 @@ Begin
 
   For i:= 1 To resquant Do
     Begin
-      TS.elem[i].compLex := TipoSimboloGramatical(i);
+      TS.elem[i].compLex := TipoSimbGramCom(i);
       TS.elem[i].Lexema := palres[i];
     End;
   ts.cant := resquant;
 End;
 
 Procedure buscarenTS(TS: TablaDeSimbolos; lexema: String; Var complex:
-                     TipoSimboloGramatical; Var encontrado: Boolean);
+                     TipoSimbGramCom; Var encontrado: Boolean);
 
 Var 
   i: byte;
@@ -114,7 +113,7 @@ Begin
 End;
 
 Procedure InstalarEnTS(Lexema: String; Var TS:TablaDeSimbolos; Var CompLex:
-                       TipoSimboloGramatical);
+                       TipoSimbGramCom);
 
 Var 
   encontrado: Boolean;
@@ -131,7 +130,7 @@ Begin
 End;
 
 Procedure SimboloEspecial(Var fuente: FileOfChar; Var control: LongInt; Var
-                          lexema: String; Var complex: TipoSimboloGramatical);
+                          lexema: String; Var complex: TipoSimbGramCom);
 
 Var 
   car: Char;
@@ -141,12 +140,18 @@ Begin
   controlAux := control + 1;
   LeerCar(fuente, control, car);
   LeerCar(fuente, controlAux, car2);
-  If (car = '>') And (car2 = '=') Then
+  If (car = ':') And (car2 = '=') Then
     Begin
-      lexema := '>=';
-      complex := Toprel;
+      lexema := ':=';
+      complex := Topasig;
       control := control + 2;
     End
+  Else If (car = '>') And (car2 = '=') Then
+         Begin
+           lexema := '>=';
+           complex := Toprel;
+           control := control + 2;
+         End
   Else If (car = '<') And (car2 = '=') Then
          Begin
            lexema := '<=';

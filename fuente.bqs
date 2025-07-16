@@ -1,30 +1,13 @@
 program pepe;
 
-type juan = string;
-
-var juan;
+var 
+  juan: float;
+  pato: string;
 
 {
-  juan:= "hola";
-  mas = menos;
-  mas >= 3;
-  menos <= 5;
-  pow(3,4);
-  root(4,5);
-  read();
-  write();
-  long();
-  menos&mas;
-  !mas;
-  |pepe;
-  suma := 3.0+1.1;
-  mult := 3.2*2.1;
-  resta := 2-10.0*5+3;
-  equacion := [(3.5*5.1)]-(4.1/2.0)+(3.5+1.0);
-  texto := "hola probando aca";
+  pepe := "casa";
+  juan := "hola";
+  if pato = juan {
 
-  {}
-  begin
-  end
+  } else {}
 }
-end

@@ -7,19 +7,20 @@ Interface
 
 // trae las units desde la carpeta helpers
 {$unitPath ./helpers/}
+{$unitPath ../../AnalizadorSintactico/helpers/}
 
 Uses 
-validadores, auxiliares;
+validadores, auxiliares, unitInitTAS;
 
 Procedure ObtenerSiguienteCompLex(Var Fuente:FileOfChar;Var Control:Longint; Var
-                                  CompLex:TipoSimboloGramatical;Var Lexema:
+                                  CompLex:TipoSimbGramCom;Var Lexema:
                                   String;Var TS:
                                   TablaDeSimbolos);
 
 Implementation
 
 Procedure ObtenerSiguienteCompLex(Var Fuente:FileOfChar;Var Control:Longint; Var
-                                  CompLex:TipoSimboloGramatical;Var Lexema:
+                                  CompLex:TipoSimbGramCom;Var Lexema:
                                   String;Var TS:
                                   TablaDeSimbolos);
 

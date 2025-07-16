@@ -7,32 +7,16 @@ Const
   maxProduccion = 8;
 
 Type 
-  TipoSimbGramCom = (Tprogram,T_llaveabre,T_llavecierra,Tptoycoma,Tvar,Tid,
-                     TFloat,T_dosp, T_igual,TString,Toprel,Twhile,
-                     Tparentesisabre,
-                     Tparentisiscierra,Tif,Tread,Twrite,Tcreal,Tccadena,Tsubstr,
-                     Tfind,Tlong,Tmenos,Tmas,TProducto,T_division,Tpot,Tcoma,
-                     Tand,Tnot,T_corchabre,Tor,T_corchcierra,Telse,ErrorLex,
-                     Pesos,Programa,Asignacion,BloqueVar,Exp3,Cond,Exp,Cuerpo,
-                     Ciclica,Exp5,Condicional,Exp6,ListaExp,ListaDefVar,Exp7,
-                     Exp4,ListaDefVar2,Cond2,Condicional2,Cond5,Lectura,
-                     Sentencia,Exp2,Cond3,DefVar,Escritura,ListaExp2,Typo,Cond4,
-                     eps)
-  ;
-
-{  TipoSimboloGramatical = (Tprogram,T_llaveabre,T_llavecierra,Tptoycoma,Tvar,Tid
-                           ,TFloat,TString,Toprel,Twhile,Tparentesisabre,
-                           Tparentisiscierra,Tif,Tread,Twrite,Tcreal,Tccadena,
-                           Tsubstr,Tfind,Tlong,Tmenos,Tmas,TProducto,T_division,
-                           Tpot,Tcoma,Tand,Tnot,T_corchabre,Tor,T_corchcierra,
-                           Telse,
-                           ErrorLex,Pesos);
-
-  TipoVarPrograma = (Programa,Asignacion,BloqueVar,Exp3,Cond,Exp,Cuerpo,Ciclica,
-                     Exp5,Condicional,Exp6,ListaExp,ListaDefVar,Exp7,Exp4,
-                     ListaDefVar2,Cond2,Condicional2,Cond5,Lectura,Sentencia,
-                     Exp2,Cond3,DefVar,Escritura,ListaExp2,Typo,Cond4);}
-
+  TipoSimbGramCom = (T_llaveabre,Tprogram,Tvar,Tfind,TFloat,TString,Tlong,Tif,
+                     Tsubstr,Telse,Twhile,Tread,Twrite,T_llavecierra,Tptoycoma,
+                     Tid,T_dosp, T_igual,Toprel,Tparentesisabre,
+                     Tparentisiscierra,Tcreal,Tccadena,Tmenos,Tmas,TProducto,
+                     T_division,Tpot,Tcoma,Tand,Tnot,T_corchabre,Tor,
+                     T_corchcierra,Topasig,eps,Pesos,Programa,Asignacion,
+                     BloqueVar,Exp3,Cond,Exp,Cuerpo,Ciclica,Exp5,Condicional,
+                     Exp6,ListaExp,ListaDefVar,Exp7,Exp4,ListaDefVar2,Cond2,
+                     Condicional2,Cond5,Lectura,Sentencia,Exp2,Cond3,DefVar,
+                     Escritura,ListaExp2,Typo,Cond4,ErrorSint,ErrorLex);
   t_produccion = Record
     elem: array [1..maxProduccion] Of TipoSimbGramCom;
     cant: byte;
@@ -40,13 +24,15 @@ Type
 
   t_puntero_produccion =  ^t_produccion;
 
-  tipo_TAS = array [TipoSimbGramCom,TipoSimbGramCom] Of ^t_produccion;
+  // tipo_TAS = array [TipoSimbGramCom,TipoSimbGramCom] Of ^t_produccion;
+  tipo_TAS = array [Programa..Cond4,T_llaveabre..Pesos] Of ^t_produccion;
 
 Procedure initTAS(Var TAS: tipo_TAS);
 
 Implementation
 Procedure initTAS(Var TAS: tipo_TAS);
 Begin
+  // Antes inicializar todos los valores de la matriz con nil
   // Programa
   New(TAS[Programa,Tprogram]);
   TAS[Programa,Tprogram]^.elem[1] := Tprogram;
@@ -68,8 +54,8 @@ Begin
 
   // Bloquevar
   New(TAS[BloqueVar,T_llaveabre]);
-  TAS[BloqueVar,T_llaveabre]^.elem[1] := eps;
-  TAS[BloqueVar,T_llaveabre]^.cant := 1;
+  // TAS[BloqueVar,T_llaveabre]^.elem[1] := eps;
+  TAS[BloqueVar,T_llaveabre]^.cant := 0;
 
   New(TAS[BloqueVar,Tvar]);
   TAS[BloqueVar,Tvar]^.elem[1] := Tvar;
@@ -210,6 +196,10 @@ Begin
   TAS[Exp, Tmenos]^.cant := 2;
 
   // Cuerpo
+  New(TAS[Cuerpo, T_llavecierra]);
+  TAS[Cuerpo, T_llavecierra]^.elem[1] := eps;
+  TAS[Cuerpo, T_llavecierra]^.cant := 1;
+
   New(TAS[Cuerpo, Tid]);
   TAS[Cuerpo, Tid]^.elem[1] := Sentencia;
   TAS[Cuerpo, Tid]^.elem[2] := Tptoycoma;
@@ -280,7 +270,7 @@ Begin
 
   // Condicional
   New(TAS[Condicional, Tif]);
-  TAS[Condicional, Tif]^.elem[1] := Tid;
+  TAS[Condicional, Tif]^.elem[1] := Tif;
   TAS[Condicional, Tif]^.elem[2] := Cond;
   TAS[Condicional, Tif]^.elem[3] := T_llaveabre;
   TAS[Condicional, Tif]^.elem[4] := Cuerpo;
@@ -456,9 +446,9 @@ Begin
   TAS[Exp4, Tmenos]^.cant := 2;
 
   // ListaDefVar2
-  New(TAS[ListaDefVar2, T_corchabre]);
-  TAS[ListaDefVar2, T_corchabre]^.elem[1] := eps;
-  TAS[ListaDefVar2, T_corchabre]^.cant := 1;
+  New(TAS[ListaDefVar2, T_llaveabre]);
+  TAS[ListaDefVar2, T_llaveabre]^.elem[1] := eps;
+  TAS[ListaDefVar2, T_llaveabre]^.cant := 1;
 
   New(TAS[ListaDefVar2, Tid]);
   TAS[ListaDefVar2, Tid]^.elem[1] := ListaDefVar;

@@ -1,18 +1,19 @@
 
-Program analizadorLex;
-// logica principal del analizador lexico
+Program testAnLex;
+// Para probar el analizador lexico
 
 {$unitPath ./helpers/}
+{$unitPath ../../AnalizadorSintactico/helpers/}
 
 Uses 
-auxiliares, validadores, extractor;
+auxiliares, validadores, extractor, unitInitTAS;
 
 Var 
   control: longint;
   fuente: FileOfChar;
   lexema: string;
   TS: TablaDeSimbolos;
-  complex: TipoSimboloGramatical;
+  complex: TipoSimbGramCom;
   i: byte;
   car: char;
 Begin
@@ -27,11 +28,11 @@ Begin
       ObtenerSiguienteCompLex(fuente, control, complex, lexema, ts);
       WriteLn(CompLex, ' | ', Lexema);
     End;
-  // WriteLn;
-  // WriteLn('TABLA DE SIMBOLOS');
-  // For i:= 1 To ts.cant Do
-  //   Begin
-  //     Writeln(TS.elem[i].compLex, ' | ', ts.elem[i].Lexema)
-  //   End;
+  WriteLn;
+  WriteLn('TABLA DE SIMBOLOS');
+  For i:= 1 To ts.cant Do
+    Begin
+      Writeln(TS.elem[i].compLex, ' | ', ts.elem[i].Lexema)
+    End;
   Close(fuente);
 End.

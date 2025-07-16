@@ -9,9 +9,6 @@ auxiliares, tablasAF;
 
 Function EsIdentificador(Var Fuente:FileOfChar; Var Control:LongInt; Var Lexema:
                          String): Boolean;
-Function EsConstanteEntera(Var Fuente:FileOfChar;Var Control: Longint;Var Lexema
-                           :
-                           String): Boolean;
 Function EsConstanteReal(Var Fuente:FileOfChar;Var Control: Longint;Var Lexema:
                          String)
 : Boolean;
@@ -108,55 +105,6 @@ Begin
 
 End;
 
-Function EsConstanteEntera(Var Fuente:FileOfChar;Var Control: Longint;Var Lexema
-                           :
-                           String): Boolean;
-
-Const 
-  q0 = 0;
-  F = [4];
-
-Function CarASimbEnt(Car:Char): SigmaEnt;
-
-Begin
-  Case Car Of 
-    '0'..'9'      : CarASimbEnt := DigitoEnt;
-    '-': CarASimbEnt := GuionEnt;
-    Else
-      CarASimbEnt := OtroEnt
-  End;
-End;
-
-Var 
-  ControlAux: LongInt;
-  EstadoActual: Qent;
-  Delta: TipoDeltaEnt;
-  Car: Char;
-Begin
-  {Cargar la tabla de transiciones}
-  AFConstEntera(Delta);
-  ControlAux := Control;
-  EstadoActual := q0;
-  While (EstadoActual <> 4) And (EstadoActual <> 5) Do
-    Begin
-      LeerCar(Fuente, ControlAux, Car);
-      EstadoActual := Delta[EstadoActual,CarASimbEnt(Car)];
-      ControlAux := ControlAux + 1;
-      If (EstadoActual<>4) Then
-        Lexema := Lexema + Car;
-    End;
-  If EstadoActual In F Then
-    Begin
-      EsConstanteEntera := True;
-      Control := ControlAux - 1;
-    End
-  Else
-    Begin
-      Lexema := '';
-      EsConstanteEntera := False;
-    End;
-End;
-
 Function EsConstanteCadena(Var Fuente:FileOfChar;Var Control: Longint;Var Lexema
                            :
                            String): Boolean;
@@ -213,16 +161,14 @@ Function EsConstanteReal(Var Fuente:FileOfChar;Var Control: Longint;Var Lexema:
 
 Const 
   q0 = 0;
-  F = [10];
+  F = [4];
 
 Function CarASimbReal(Car:Char): SigmaReal;
 
 Begin
   Case Car Of 
     '0'..'9'      : CarASimbReal := DigitoReal;
-    '-': CarASimbReal := GuionReal;
     '.': CarASimbReal := PuntoReal;
-    ',': CarASimbReal := ComaReal;
     Else
       CarASimbReal := OtroReal
   End;
@@ -240,12 +186,12 @@ Begin
   ControlAux := Control;
   EstadoActual := q0;
   Lexema := '';
-  While (EstadoActual <> 10) And (EstadoActual <> 11) Do
+  While (EstadoActual <> 4) And (EstadoActual <> 5) Do
     Begin
       LeerCar(Fuente, ControlAux, Car);
       EstadoActual := Delta[EstadoActual,CarASimbReal(Car)];
       ControlAux := ControlAux + 1;
-      If (EstadoActual <> 10) Then
+      If (EstadoActual <> 4) Then
         Lexema := Lexema+Car;
     End;
   If EstadoActual In F Then

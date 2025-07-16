@@ -36,10 +36,13 @@ Begin
       LeerCar(Fuente, control, car);
     End;
   controlAux := control;
-  If (car = FinArch) Then CompLex := Pesos
+  If (car = FinArch) Then
+    Begin
+      CompLex := Pesos;
+      Lexema := '$Pesos';
+    End
   Else
     Begin
-
       If EsIdentificador(Fuente,Control,Lexema) Then
         Begin
           InstalarEnTS(Lexema,TS,CompLex);
@@ -48,10 +51,6 @@ Begin
              CompLex := Tccadena
       Else If EsConstanteReal(Fuente,Control,Lexema) Then
              CompLex := Tcreal
-                        // Else If EsConstanteEntera(Fuente,Control,Lexema) Then
-                        //        Begin
-                        //          CompLex := Tcentera;
-                        //        End
       Else If EsSimboloEspecial(Fuente,Control) Then
              SimboloEspecial(Fuente, control, Lexema, CompLex)
       Else
@@ -61,7 +60,6 @@ Begin
         End;
       If controlAux = Control Then
         Control := control + 1;
-      // 
     End;
 End;
 

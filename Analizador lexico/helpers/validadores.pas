@@ -31,7 +31,7 @@ Begin
     '^': EsSimboloEspecial := True;
     '&': EsSimboloEspecial := True;
     '!': EsSimboloEspecial := True;
-    '~': EsSimboloEspecial := True;
+    '|': EsSimboloEspecial := True;
     ']': EsSimboloEspecial := True;
     '[': EsSimboloEspecial := True;
     '{': EsSimboloEspecial := True;
@@ -39,7 +39,6 @@ Begin
     '(': EsSimboloEspecial := True;
     ')': EsSimboloEspecial := True;
     ';': EsSimboloEspecial := True;
-    '.': EsSimboloEspecial := True;
     ',': EsSimboloEspecial := True;
     '<': EsSimboloEspecial := True;
     '>': EsSimboloEspecial := True;

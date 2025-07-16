@@ -4,16 +4,13 @@ Unit auxiliares;
 Interface
 
 Const 
-  resquant = 17;
+  resquant = 12;
   Fr = [6,12];
   FinArch = #0;
   maxsim = 200;
-  palres: array[1..resquant] Of string = ('program', 'var', 'find',
-                                          'float',
-                                          'integer', 'char', 'string', 'boolean'
-                                          ,
-                                          'long','if','then', 'subcadena',
-                                          'else','while','pow','read','write');
+  palres: array[1..resquant] Of string = ('program','var','find','float',
+                                          'string','long','if','substr',
+                                          'else','while','read','write');
 
   // substr = subcadena - long = longitud
 
@@ -23,13 +20,12 @@ Type
   Qr = 0..13;
   TipoDeltaReal = Array[Qr,SigmaReal] Of Qr;
 
-  TipoSimboloGramatical = (Tid,Tcreal,Tcentera,Tccadena,Tparentesisabre,
-                           Tparentisiscierra
-                           ,Tmas,Tmenos,TProducto,T_division,Tptoycoma,Tcoma,
-                           Tpunto,Toperadorrealacional,Toperadorasignacion,
-                           ErrorLex, Pesos, TparReservada, T_llaveabre,
-                           T_llavecierra, T_oplog, T_corchabre, T_corchcierra,
-                           Tpot);
+  TipoSimboloGramatical = (Tor,Tprogram,Tvar,Tfind,TFloat,TString,Tlong,Tif,
+                           Tsubstr,Telse,Twhile,Tread,Twrite,T_llaveabre,
+                           T_llavecierra,Tptoycoma,Tid,T_dosp, T_igual,Toprel,
+                           Tparentesisabre,Tparentisiscierra,Tcreal,Tccadena,
+                           Tmenos,Tmas,TProducto,T_division,Tpot,Tcoma,Tand,Tnot
+                           ,T_corchabre,T_corchcierra,ErrorLex,Pesos);
   TElemTS = Record
     compLex: TipoSimboloGramatical;
     Lexema: String;
@@ -80,7 +76,7 @@ Begin
   ts.cant := 0;
   For i := 1 To maxsim Do
     Begin
-      TS.elem[i].compLex := TparReservada;
+      TS.elem[i].compLex := Pesos;
       TS.elem[i].Lexema := '';
     End;
 End;
@@ -93,7 +89,7 @@ Begin
 
   For i:= 1 To resquant Do
     Begin
-      TS.elem[i].compLex := TparReservada;
+      TS.elem[i].compLex := TipoSimboloGramatical(i);
       TS.elem[i].Lexema := palres[i];
     End;
   ts.cant := resquant;
@@ -145,22 +141,16 @@ Begin
   controlAux := control + 1;
   LeerCar(fuente, control, car);
   LeerCar(fuente, controlAux, car2);
-  If (car = ':') And (car2 = '=') Then
+  If (car = '>') And (car2 = '=') Then
     Begin
-      lexema := ':=';
-      complex := Toperadorasignacion;
+      lexema := '>=';
+      complex := Toprel;
       control := control + 2;
     End
-  Else If (car = '>') And (car2 = '=') Then
-         Begin
-           lexema := '>=';
-           complex := Toperadorrealacional;
-           control := control + 2;
-         End
   Else If (car = '<') And (car2 = '=') Then
          Begin
            lexema := '<=';
-           complex := Toperadorrealacional;
+           complex := Toprel;
            control := control + 2;
          End
   Else
@@ -214,10 +204,10 @@ Begin
                complex := Tptoycoma;
                control := control + 1;
              End;
-        '.':
+        ':':
              Begin
-               lexema := '.';
-               complex := Tpunto;
+               lexema := ':';
+               complex := T_dosp;
                control := control + 1;
              End;
         ',':
@@ -229,19 +219,19 @@ Begin
         '<':
              Begin
                lexema := '<';
-               complex := Toperadorrealacional;
+               complex := Toprel;
                control := control + 1;
              End;
         '>':
              Begin
                lexema := '>';
-               complex := Toperadorrealacional;
+               complex := Toprel;
                control := control + 1;
              End;
         '=':
              Begin
                lexema := '=';
-               complex := Toperadorrealacional;
+               complex := Toprel;
                control := control + 1;
              End;
         '+':
@@ -271,19 +261,19 @@ Begin
         '!':
              Begin
                lexema := '!';
-               complex := T_oplog;
+               complex := Tnot;
                control := control + 1;
              End;
         '&':
              Begin
                lexema := '&';
-               complex := T_oplog;
+               complex := Tand;
                control := control + 1;
              End;
-        '~':
+        '|':
              Begin
-               lexema := '~';
-               complex := T_oplog;
+               lexema := '|';
+               complex := Tor;
                control := control + 1;
              End;
       End;

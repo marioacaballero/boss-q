@@ -19,7 +19,39 @@ Type
 
   End;
 
+Procedure iniciarArbol (Var raiz: t_arbol_derivacion);
+Procedure agregarDerivacion (Var raiz: t_arbol_derivacion; dir:
+                             t_arbol_derivacion; i: byte);
+Procedure Mostrar_arbol (Var arbol:t_arbol_derivacion);
+Procedure crearNodo(Var dir: t_arbol_derivacion; elem: TipoSimbGramCom);
+Procedure guardarArbol(Var ar:text; Var raiz: t_arbol_derivacion; Desplazamiento
+                       :integer);
+
 Implementation
+
+Procedure iniciarArbol (Var raiz: t_arbol_derivacion);
+Begin
+  New(raiz);
+  raiz^.simbolo := Programa;
+  raiz^.Lexema := '';
+  raiz^.cant := 0;
+End;
+
+Procedure crearNodo(Var dir: t_arbol_derivacion; elem: TipoSimbGramCom);
+
+Begin
+  New(dir);
+  dir^.simbolo := elem;
+  dir^.Lexema := '';
+  dir^.cant := 0;
+End;
+
+Procedure agregarDerivacion (Var raiz: t_arbol_derivacion; dir:
+                             t_arbol_derivacion; i: byte);
+Begin
+  raiz^.Hijos[i] := dir;
+  inc(raiz^.cant);
+End;
 
 Procedure Mostrar_arbol (Var arbol:t_arbol_derivacion);
 

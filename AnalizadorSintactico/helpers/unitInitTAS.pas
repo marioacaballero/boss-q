@@ -31,8 +31,17 @@ Procedure initTAS(Var TAS: tipo_TAS);
 
 Implementation
 Procedure initTAS(Var TAS: tipo_TAS);
+
+Var i,j: TipoSimbGramCom;
 Begin
   // Antes inicializar todos los valores de la matriz con nil
+  For i:= Programa To Cond4 Do
+    For j:=T_llaveabre To Pesos Do
+      Begin
+        New(TAS[i,j]);
+        TAS[i,j] := Nil;
+      End;
+
   // Programa
   New(TAS[Programa,Tprogram]);
   TAS[Programa,Tprogram]^.elem[1] := Tprogram;
@@ -193,11 +202,11 @@ Begin
   TAS[Exp, Tmenos]^.elem[2] := Exp5;
   TAS[Exp, Tmenos]^.cant := 2;
 
-    // Cuerpo
-  
+  // Cuerpo
+
   New(TAS[Cuerpo, T_llaveabre]);
   TAS[Cuerpo, T_llaveabre]^.cant := 0;
-  
+
   New(TAS[Cuerpo, T_llavecierra]);
   TAS[Cuerpo, T_llavecierra]^.cant := 0;
 
@@ -209,7 +218,7 @@ Begin
 
   New(TAS[Cuerpo, Tmenos]);
   TAS[Cuerpo, Tmenos]^.cant := 0;
-  
+
   New(TAS[Cuerpo, Tmas]);
   TAS[Cuerpo, Tmas]^.cant := 0;
 
@@ -219,9 +228,9 @@ Begin
   New(TAS[Cuerpo, T_division]);
   TAS[Cuerpo, T_division]^.cant := 0;
 
-    New(TAS[Cuerpo, Tcoma]);
+  New(TAS[Cuerpo, Tcoma]);
   TAS[Cuerpo, Tcoma]^.cant := 0;
-  
+
   New(TAS[Cuerpo, Tand]);
   TAS[Cuerpo, Tand]^.cant := 0;
 
@@ -273,7 +282,7 @@ Begin
   // Exp5
   New(TAS[Exp5, T_llaveabre]);
   TAS[Exp5, T_llaveabre]^.cant := 0;
-  
+
   New(TAS[Exp5, Tptoycoma]);
   TAS[Exp5, Tptoycoma]^.cant := 0;
 
@@ -285,7 +294,7 @@ Begin
 
   New(TAS[Exp5, Tcoma]);
   TAS[Exp5, Tcoma]^.cant := 0;
-  
+
   New(TAS[Exp5, Tand]);
   TAS[Exp5, Tand]^.cant := 0;
 
@@ -320,7 +329,7 @@ Begin
   // Exp6
   New(TAS[Exp6, T_llaveabre]);
   TAS[Exp6, T_llaveabre]^.cant := 0;
-  
+
   New(TAS[Exp6, Tptoycoma]);
   TAS[Exp6, Tptoycoma]^.cant := 0;
 
@@ -418,7 +427,7 @@ Begin
   New(TAS[Exp7, Tptoycoma]);
   TAS[Exp7, Tptoycoma]^.cant := 0;
 
-    New(TAS[Exp7, Tid]);
+  New(TAS[Exp7, Tid]);
   TAS[Exp7, Tid]^.cant := 0;
 
   New(TAS[Exp7, Toprel]);
@@ -737,6 +746,17 @@ Begin
   TAS[Cond3, Tmenos]^.elem[2] := Toprel;
   TAS[Cond3, Tmenos]^.elem[3] := Exp;
   TAS[Cond3, Tmenos]^.cant := 3;
+
+  New(TAS[Cond3, Tnot]);
+  TAS[Cond3, Tnot]^.elem[1] := Tnot;
+  TAS[Cond3, Tnot]^.elem[2] := Cond3;
+  TAS[Cond3, Tnot]^.cant := 2;
+
+  New(TAS[Cond3, T_corchabre]);
+  TAS[Cond3, T_corchabre]^.elem[1] := T_corchabre;
+  TAS[Cond3, T_corchabre]^.elem[2] := Cond;
+  TAS[Cond3, T_corchabre]^.elem[3] := T_corchcierra;
+  TAS[Cond3, T_corchabre]^.cant := 3;
 
   // DefVar
   New(TAS[DefVar, Tid]);

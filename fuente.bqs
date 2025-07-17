@@ -7,7 +7,21 @@ var
 {
   pepe := "casa";
   juan := "hola";
-  if pato = juan {
+  if [pato <= juan] & [pato > juan] {
+    write(substr("test ", 1, 3));
+  }
+  else {
+    read("hola ", pepe);
+  };
 
-  } else {}
+  while ![pato < juan] | ![juan >= pepe] {
+    write(pepe);
+  };
+
+  if ![juan = pepe] {
+
+    juan := find("hola ", "h");
+  };
+  
+  pepe := long("test2");
 }

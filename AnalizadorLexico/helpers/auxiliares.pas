@@ -175,7 +175,7 @@ Begin
              End;
         ')':
              Begin
-               lexema := '(';
+               lexema := ')';
                complex := Tparentisiscierra;
                control := control + 1;
              End;

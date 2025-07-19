@@ -1,19 +1,19 @@
 program contarVocales;
 var
-  cadena: String;
-  i: Float;
-  cant: Float;
-  letra: String;
+  cadena: string;
+  i: float;
+  cant: float;
+  letra: string;
 {
   read(cadena, cadena);
   i := 0;
   cant := 0;
   while i < long(cadena) {
     letra := substr(cadena, i, 1);
-    if letra = "a" | letra = "e" | letra = "i" | letra = "o" | letra = "u" |
-       letra = "A" | letra = "E" | letra = "I" | letra = "O" | letra = "U" {
+    if [letra = "a"] | [letra = "e"] | [letra = "i"] | [letra = "o"] | [letra = "u"] |
+       [letra = "A"] | [letra = "E"] | [letra = "I"] | [letra = "O"] | [letra = "U"] {
       cant := cant + 1;
-    }
+    };
     i := i + 1;
   };
   write(cant);

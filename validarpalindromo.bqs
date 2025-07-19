@@ -1,12 +1,12 @@
 program verificarPalindromo;
 var
-  cadena: String;
-  i: Float;
-  j: Float;
-  esPal: Float;
-  letraI: String;
-  letraJ: String;
-  resultado: String;
+  cadena: string;
+  i: float;
+  j: float;
+  esPal: float;
+  letraI: string;
+  letraJ: string;
+  resultado: string;
 {
   read(cadena, cadena);
   i := 0;

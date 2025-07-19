@@ -22,7 +22,7 @@ Procedure anLex(Var control: LongInt; Var CompLex: TipoSimbGramCom; Var
 Var 
   fuente: FileOfChar;
 Begin
-  Assign(fuente, '../fuente.bqs');
+  Assign(fuente, '../calcdescuento.bqs');
   Reset(fuente);
   ObtenerSiguienteCompLex(fuente, control, complex, lexema, ts);
   Close(fuente);

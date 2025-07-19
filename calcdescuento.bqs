@@ -1,0 +1,23 @@
+program calcdescuento;
+
+var
+    cadena:string;
+    precio:float;
+    descuento:float;
+    resultado:float;
+    cadena2:string;
+
+    {   
+        cadena2:= "s";
+        while cadena2 = "s" | cadena2 = "S"
+        {
+        cadena:= "ingrese precio: ";
+        read(cadena, precio);
+        cadena:= "ingrese descuento en porcentaje (%) ";
+        read(cadena,descuento);
+        resultado:= precio-(precio*descuento)/100;
+        cadena := "su precio con descuento aplicado es: ";
+        write(cadena,resultado);
+        read("presione s para continuar", cadena2);
+        };
+    }

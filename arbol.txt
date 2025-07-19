@@ -1,368 +1,278 @@
  Programa: 
    Tprogram: program
-   Tid: pepe
+   Tid: calcdescuento
    Tptoycoma: ;
    BloqueVar: 
      Tvar: var
      ListaDefVar: 
        DefVar: 
-         Tid: juan
+         Tid: cadena
          T_dosp: :
          Typo: 
-           TFloat: float
+           TString: string
        Tptoycoma: ;
        ListaDefVar2: 
          ListaDefVar: 
            DefVar: 
-             Tid: pato
+             Tid: precio
              T_dosp: :
              Typo: 
-               TString: string
+               TFloat: float
            Tptoycoma: ;
            ListaDefVar2: 
+             ListaDefVar: 
+               DefVar: 
+                 Tid: descuento
+                 T_dosp: :
+                 Typo: 
+                   TFloat: float
+               Tptoycoma: ;
+               ListaDefVar2: 
+                 ListaDefVar: 
+                   DefVar: 
+                     Tid: resultado
+                     T_dosp: :
+                     Typo: 
+                       TFloat: float
+                   Tptoycoma: ;
+                   ListaDefVar2: 
+                     ListaDefVar: 
+                       DefVar: 
+                         Tid: cadena2
+                         T_dosp: :
+                         Typo: 
+                           TString: string
+                       Tptoycoma: ;
+                       ListaDefVar2: 
    T_llaveabre: {
    Cuerpo: 
      Sentencia: 
        Asignacion: 
-         Tid: pepe
+         Tid: cadena2
          Topasig: :=
          Exp: 
            Exp2: 
              Exp3: 
                Exp4: 
-                 Tccadena: "casa"
+                 Tccadena: "s"
                Exp7: 
              Exp6: 
            Exp5: 
      Tptoycoma: ;
      Cuerpo: 
        Sentencia: 
-         Asignacion: 
-           Tid: juan
-           Topasig: :=
-           Exp: 
-             Exp2: 
-               Exp3: 
-                 Exp4: 
-                   Tccadena: "hola"
-                 Exp7: 
-               Exp6: 
-             Exp5: 
-       Tptoycoma: ;
-       Cuerpo: 
-         Sentencia: 
-           Condicional: 
-             Tif: if
-             Cond: 
+         Ciclica: 
+           Twhile: while
+           Cond: 
+             Cond2: 
+               Cond3: 
+                 Exp: 
+                   Exp2: 
+                     Exp3: 
+                       Exp4: 
+                         Tid: cadena2
+                       Exp7: 
+                     Exp6: 
+                   Exp5: 
+                 Toprel: =
+                 Exp: 
+                   Exp2: 
+                     Exp3: 
+                       Exp4: 
+                         Tccadena: "s"
+                       Exp7: 
+                     Exp6: 
+                   Exp5: 
+               Cond5: 
+             Cond4: 
+               Tor: |
                Cond2: 
                  Cond3: 
-                   T_corchabre: [
-                   Cond: 
-                     Cond2: 
-                       Cond3: 
-                         Exp: 
-                           Exp2: 
-                             Exp3: 
-                               Exp4: 
-                                 Tid: pato
-                               Exp7: 
-                             Exp6: 
-                           Exp5: 
-                         Toprel: <=
-                         Exp: 
-                           Exp2: 
-                             Exp3: 
-                               Exp4: 
-                                 Tid: juan
-                               Exp7: 
-                             Exp6: 
-                           Exp5: 
-                       Cond5: 
-                     Cond4: 
-                   T_corchcierra: ]
+                   Exp: 
+                     Exp2: 
+                       Exp3: 
+                         Exp4: 
+                           Tid: cadena2
+                         Exp7: 
+                       Exp6: 
+                     Exp5: 
+                   Toprel: =
+                   Exp: 
+                     Exp2: 
+                       Exp3: 
+                         Exp4: 
+                           Tccadena: "S"
+                         Exp7: 
+                       Exp6: 
+                     Exp5: 
                  Cond5: 
-                   Tand: &
-                   Cond3: 
-                     T_corchabre: [
-                     Cond: 
-                       Cond2: 
-                         Cond3: 
-                           Exp: 
-                             Exp2: 
-                               Exp3: 
-                                 Exp4: 
-                                   Tid: pato
-                                 Exp7: 
-                               Exp6: 
-                             Exp5: 
-                           Toprel: >
-                           Exp: 
-                             Exp2: 
-                               Exp3: 
-                                 Exp4: 
-                                   Tid: juan
-                                 Exp7: 
-                               Exp6: 
-                             Exp5: 
-                         Cond5: 
-                       Cond4: 
-                     T_corchcierra: ]
-                   Cond5: 
                Cond4: 
-             T_llaveabre: {
+           T_llaveabre: {
+           Cuerpo: 
+             Sentencia: 
+               Asignacion: 
+                 Tid: cadena
+                 Topasig: :=
+                 Exp: 
+                   Exp2: 
+                     Exp3: 
+                       Exp4: 
+                         Tccadena: "ingrese precio: "
+                       Exp7: 
+                     Exp6: 
+                   Exp5: 
+             Tptoycoma: ;
              Cuerpo: 
                Sentencia: 
-                 Escritura: 
-                   Twrite: write
+                 Lectura: 
+                   Tread: read
                    Tparentesisabre: (
-                   ListaExp: 
-                     Exp: 
-                       Exp2: 
-                         Exp3: 
-                           Exp4: 
-                             Tsubstr: substr
-                             Tparentesisabre: (
-                             Exp: 
-                               Exp2: 
-                                 Exp3: 
-                                   Exp4: 
-                                     Tccadena: "test "
-                                   Exp7: 
-                                 Exp6: 
-                               Exp5: 
-                             Tcoma: ,
-                             Exp: 
-                               Exp2: 
-                                 Exp3: 
-                                   Exp4: 
-                                     Tcreal: 1
-                                   Exp7: 
-                                 Exp6: 
-                               Exp5: 
-                             Tcoma: ,
-                             Exp: 
-                               Exp2: 
-                                 Exp3: 
-                                   Exp4: 
-                                     Tcreal: 3
-                                   Exp7: 
-                                 Exp6: 
-                               Exp5: 
-                             Tparentisiscierra: )
-                           Exp7: 
-                         Exp6: 
-                       Exp5: 
-                     ListaExp2: 
+                   Exp: 
+                     Exp2: 
+                       Exp3: 
+                         Exp4: 
+                           Tid: cadena
+                         Exp7: 
+                       Exp6: 
+                     Exp5: 
+                   Tcoma: ,
+                   Tid: precio
                    Tparentisiscierra: )
                Tptoycoma: ;
                Cuerpo: 
-             T_llavecierra: }
-             Condicional2: 
-               Telse: else
-               T_llaveabre: {
-               Cuerpo: 
                  Sentencia: 
-                   Lectura: 
-                     Tread: read
-                     Tparentesisabre: (
+                   Asignacion: 
+                     Tid: cadena
+                     Topasig: :=
                      Exp: 
                        Exp2: 
                          Exp3: 
                            Exp4: 
-                             Tccadena: "hola "
+                             Tccadena: "ingrese descuento en porcentaje (%) "
                            Exp7: 
                          Exp6: 
                        Exp5: 
-                     Tcoma: ,
-                     Tid: pepe
-                     Tparentisiscierra: )
                  Tptoycoma: ;
                  Cuerpo: 
-               T_llavecierra: }
-         Tptoycoma: ;
-         Cuerpo: 
-           Sentencia: 
-             Ciclica: 
-               Twhile: while
-               Cond: 
-                 Cond2: 
-                   Cond3: 
-                     Tnot: !
-                     Cond3: 
-                       T_corchabre: [
-                       Cond: 
-                         Cond2: 
-                           Cond3: 
-                             Exp: 
-                               Exp2: 
-                                 Exp3: 
-                                   Exp4: 
-                                     Tid: pato
-                                   Exp7: 
-                                 Exp6: 
-                               Exp5: 
-                             Toprel: <
-                             Exp: 
-                               Exp2: 
-                                 Exp3: 
-                                   Exp4: 
-                                     Tid: juan
-                                   Exp7: 
-                                 Exp6: 
-                               Exp5: 
-                           Cond5: 
-                         Cond4: 
-                       T_corchcierra: ]
-                   Cond5: 
-                 Cond4: 
-                   Tor: |
-                   Cond2: 
-                     Cond3: 
-                       Tnot: !
-                       Cond3: 
-                         T_corchabre: [
-                         Cond: 
-                           Cond2: 
-                             Cond3: 
-                               Exp: 
-                                 Exp2: 
-                                   Exp3: 
-                                     Exp4: 
-                                       Tid: juan
-                                     Exp7: 
-                                   Exp6: 
-                                 Exp5: 
-                               Toprel: >=
-                               Exp: 
-                                 Exp2: 
-                                   Exp3: 
-                                     Exp4: 
-                                       Tid: pepe
-                                     Exp7: 
-                                   Exp6: 
-                                 Exp5: 
-                             Cond5: 
-                           Cond4: 
-                         T_corchcierra: ]
-                     Cond5: 
-                   Cond4: 
-               T_llaveabre: {
-               Cuerpo: 
-                 Sentencia: 
-                   Escritura: 
-                     Twrite: write
-                     Tparentesisabre: (
-                     ListaExp: 
+                   Sentencia: 
+                     Lectura: 
+                       Tread: read
+                       Tparentesisabre: (
                        Exp: 
                          Exp2: 
                            Exp3: 
                              Exp4: 
-                               Tid: pepe
+                               Tid: cadena
                              Exp7: 
                            Exp6: 
                          Exp5: 
-                       ListaExp2: 
-                     Tparentisiscierra: )
-                 Tptoycoma: ;
-                 Cuerpo: 
-               T_llavecierra: }
-           Tptoycoma: ;
-           Cuerpo: 
-             Sentencia: 
-               Condicional: 
-                 Tif: if
-                 Cond: 
-                   Cond2: 
-                     Cond3: 
-                       Tnot: !
-                       Cond3: 
-                         T_corchabre: [
-                         Cond: 
-                           Cond2: 
-                             Cond3: 
+                       Tcoma: ,
+                       Tid: descuento
+                       Tparentisiscierra: )
+                   Tptoycoma: ;
+                   Cuerpo: 
+                     Sentencia: 
+                       Asignacion: 
+                         Tid: resultado
+                         Topasig: :=
+                         Exp: 
+                           Exp2: 
+                             Exp3: 
+                               Exp4: 
+                                 Tid: precio
+                               Exp7: 
+                             Exp6: 
+                           Exp5: 
+                             Tmenos: -
+                             Exp2: 
+                               Exp3: 
+                                 Exp4: 
+                                   Tparentesisabre: (
+                                   Exp: 
+                                     Exp2: 
+                                       Exp3: 
+                                         Exp4: 
+                                           Tid: precio
+                                         Exp7: 
+                                       Exp6: 
+                                         TProducto: *
+                                         Exp3: 
+                                           Exp4: 
+                                             Tid: descuento
+                                           Exp7: 
+                                         Exp6: 
+                                     Exp5: 
+                                   Tparentisiscierra: )
+                                 Exp7: 
+                               Exp6: 
+                                 T_division: /
+                                 Exp3: 
+                                   Exp4: 
+                                     Tcreal: 100
+                                   Exp7: 
+                                 Exp6: 
+                             Exp5: 
+                     Tptoycoma: ;
+                     Cuerpo: 
+                       Sentencia: 
+                         Asignacion: 
+                           Tid: cadena
+                           Topasig: :=
+                           Exp: 
+                             Exp2: 
+                               Exp3: 
+                                 Exp4: 
+                                   Tccadena: "su precio con descuento aplicado es: "
+                                 Exp7: 
+                               Exp6: 
+                             Exp5: 
+                       Tptoycoma: ;
+                       Cuerpo: 
+                         Sentencia: 
+                           Escritura: 
+                             Twrite: write
+                             Tparentesisabre: (
+                             ListaExp: 
                                Exp: 
                                  Exp2: 
                                    Exp3: 
                                      Exp4: 
-                                       Tid: juan
+                                       Tid: cadena
                                      Exp7: 
                                    Exp6: 
                                  Exp5: 
-                               Toprel: =
-                               Exp: 
-                                 Exp2: 
-                                   Exp3: 
-                                     Exp4: 
-                                       Tid: pepe
-                                     Exp7: 
-                                   Exp6: 
-                                 Exp5: 
-                             Cond5: 
-                           Cond4: 
-                         T_corchcierra: ]
-                     Cond5: 
-                   Cond4: 
-                 T_llaveabre: {
-                 Cuerpo: 
-                   Sentencia: 
-                     Asignacion: 
-                       Tid: juan
-                       Topasig: :=
-                       Exp: 
-                         Exp2: 
-                           Exp3: 
-                             Exp4: 
-                               Tfind: find
+                               ListaExp2: 
+                                 Tcoma: ,
+                                 Exp: 
+                                   Exp2: 
+                                     Exp3: 
+                                       Exp4: 
+                                         Tid: resultado
+                                       Exp7: 
+                                     Exp6: 
+                                   Exp5: 
+                                 ListaExp2: 
+                             Tparentisiscierra: )
+                         Tptoycoma: ;
+                         Cuerpo: 
+                           Sentencia: 
+                             Lectura: 
+                               Tread: read
                                Tparentesisabre: (
                                Exp: 
                                  Exp2: 
                                    Exp3: 
                                      Exp4: 
-                                       Tccadena: "hola "
+                                       Tccadena: "presione s para continuar"
                                      Exp7: 
                                    Exp6: 
                                  Exp5: 
                                Tcoma: ,
-                               Exp: 
-                                 Exp2: 
-                                   Exp3: 
-                                     Exp4: 
-                                       Tccadena: "h"
-                                     Exp7: 
-                                   Exp6: 
-                                 Exp5: 
+                               Tid: cadena2
                                Tparentisiscierra: )
-                             Exp7: 
-                           Exp6: 
-                         Exp5: 
-                   Tptoycoma: ;
-                   Cuerpo: 
-                 T_llavecierra: }
-                 Condicional2: 
-             Tptoycoma: ;
-             Cuerpo: 
-               Sentencia: 
-                 Asignacion: 
-                   Tid: pepe
-                   Topasig: :=
-                   Exp: 
-                     Exp2: 
-                       Exp3: 
-                         Exp4: 
-                           Tlong: long
-                           Tparentesisabre: (
-                           Exp: 
-                             Exp2: 
-                               Exp3: 
-                                 Exp4: 
-                                   Tccadena: "test2"
-                                 Exp7: 
-                               Exp6: 
-                             Exp5: 
-                           Tparentisiscierra: )
-                         Exp7: 
-                       Exp6: 
-                     Exp5: 
-               Tptoycoma: ;
-               Cuerpo: 
+                           Tptoycoma: ;
+                           Cuerpo: 
+           T_llavecierra: }
+       Tptoycoma: ;
+       Cuerpo: 
    T_llavecierra: }

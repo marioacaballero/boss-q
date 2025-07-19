@@ -158,6 +158,12 @@ Begin
            complex := Toprel;
            control := control + 2;
          End
+  Else If (car = '!') And (car2 = '=') Then
+         Begin
+           lexema := '!=';
+           complex := Toprel;
+           control := control + 2;
+         End
   Else
     Begin
       Case Car Of 

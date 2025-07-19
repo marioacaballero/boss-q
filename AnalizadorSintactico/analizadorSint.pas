@@ -6,7 +6,7 @@ Program analizadorSint;
 {$unitPath ../AnalizadorLexico/helpers/}
 
 Uses 
-analizadorLex, unitInitTAS, unitPila, auxiliares, unitArbol;
+analizadorLex, unitInitTAS, unitPila, auxiliares, unitArbol, crt;
 
 Var 
   TAS: tipo_TAS;
@@ -73,10 +73,12 @@ Begin
   If complex = ErrorLex Then
     WriteLn('Error lexico: ',lexema, ' es invalido');
 
-  Mostrar_arbol(raiz);
+ // Mostrar_arbol(raiz);
 
   Assign(f, '../arbol.txt');
   Rewrite(f);
   guardarArbol(f,raiz,1);
+
   Close(f);
+  readln;
 End.

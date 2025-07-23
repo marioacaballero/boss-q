@@ -1,12 +1,20 @@
 
-Program analizadorSint;
+Unit analizadorSint;
 
+Interface
 {$unitPath ./helpers/}
 {$unitPath ../AnalizadorLexico/}
 {$unitPath ../AnalizadorLexico/helpers/}
 
 Uses 
-analizadorLex, unitInitTAS, unitPila, auxiliares, unitArbol, crt;
+analizadorLex, unitInitTAS, unitPila, auxiliares, unitArbol;
+
+Procedure ASint(Var raiz: t_arbol_derivacion; Var fuente: FileOfChar; f: String)
+;
+
+Implementation
+Procedure ASint(Var raiz: t_arbol_derivacion; Var fuente: FileOfChar; f: String)
+;
 
 Var 
   TAS: tipo_TAS;
@@ -17,8 +25,7 @@ Var
   TS: TablaDeSimbolos;
   pila: t_pila;
   elem: t_elem_Pila;
-  raiz, dir: t_arbol_derivacion;
-  f: Text;
+  dir: t_arbol_derivacion;
 Begin
   cargarPalRes(TS);
   initTAS(TAS);
@@ -26,7 +33,7 @@ Begin
   iniciarpila(pila, raiz);
   control := 0;
   lexema := '';
-  anLex(control, complex, lexema, TS);
+  anLex(fuente, control, complex, lexema, TS);
 
   While (complex <> ErrorLex) And (complex <> ErrorSint) And (complex <> Pesos) 
     Do
@@ -37,7 +44,7 @@ Begin
           If (elem.simb = complex) Then
             Begin
               elem.nodo^.lexema := lexema;
-              anLex(control, complex, lexema, TS);
+              anLex(fuente, control, complex, lexema, TS);
             End
           Else
             Begin
@@ -73,12 +80,6 @@ Begin
   If complex = ErrorLex Then
     WriteLn('Error lexico: ',lexema, ' es invalido');
 
- // Mostrar_arbol(raiz);
-
-  Assign(f, '../arbol.txt');
-  Rewrite(f);
-  guardarArbol(f,raiz,1);
-
-  Close(f);
-  readln;
+  If complex = Pesos Then WriteLn('Compilacion exitosa de ', f)
+End;
 End.

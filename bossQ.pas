@@ -14,7 +14,8 @@ Var
   f: string;
 Begin
   // obtener la ruta
-  f := './programa/' + GetEnvironmentVariable('FILE');
+  //f := './programa/' + GetEnvironmentVariable('FILE');
+f := './programa/suma.bqs';
 
   // primero inicializo archivo
   Assign(fuente, f);

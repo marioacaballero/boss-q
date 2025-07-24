@@ -349,22 +349,32 @@ Procedure evalExp7(Var arbol: t_arbol_derivacion; Var state: t_estado; op1:
                    t_valor; Var res: t_valor);
 
 Var op2: t_valor;
+    n: Integer;
 Begin
   If arbol^.cant <> 0 Then
     Begin
       evalExp4(arbol^.Hijos[2], state, op2);
       If (op1.t_typo <> Tcreal) Or (op2.t_typo <> Tcreal) Then
         Begin
-          WriteLn('Error: Operación no válida entre tipos ', op1.t_typo, ' y '
-                  ,
-                  op2.t_typo);
+          WriteLn('Error: Operación no válida entre tipos ', op1.t_typo, ' y ', op2.t_typo);
           Halt;
         End;
-      If op2.v_real < 0 Then
-        Begin
-          WriteLn('Error: Raíz de número negativo');
-          Halt;
-        End;
+
+      // Detecta si el exponente es de la forma 1/n (raíz n-ésima)
+      if (Frac(op2.v_real) > 0) and (op2.v_real > 0) then
+      begin
+        n := Round(1 / op2.v_real);
+        // Solo si el exponente es exactamente 1/n
+        if Abs(op2.v_real - (1 / n)) < 0.00001 then
+        begin
+          if (op1.v_real < 0) and (n mod 2 = 0) then
+          begin
+            WriteLn('Error: No se puede calcular raíz par de número negativo');
+            Halt;
+          end;
+        end;
+      end;
+
       op2.v_real := Power(op1.v_real, op2.v_real);
       evalExp7(arbol^.Hijos[3], state, op2, res);
     End

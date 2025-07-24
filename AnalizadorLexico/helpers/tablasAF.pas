@@ -8,8 +8,10 @@ Type
   Q = 0..3;
   TipoDelta = Array[Q,Sigma] Of Q;
 
-  SigmaReal = (DigitoReal, OtroReal, PuntoReal);
-  Qreal = 0..5;
+  SigmaReal = (DigitoReal, OtroReal, PuntoReal, MenosReal); // Agregado MenosReal para el signo negativo
+  Qreal = 0..6; 
+  // Aumentado el rango de Qreal para incluir el nuevo estado 6
+  // y para manejar el caso del signo negativo  
   TipoDeltaReal = Array [Qreal, SigmaReal] Of Qreal;
 
   SigmaCadena = (Comilla, LetraCad, DigitoCad, OtroCad);
@@ -36,9 +38,16 @@ End;
 
 Procedure AFConstReal(Var delta: TipoDeltaReal);
 Begin
+  Delta[0,MenosReal] := 6; // Nuevo estado para el signo menos
   Delta[0,DigitoReal] := 1;
   Delta[0,OtroReal] := 5;
   Delta[0,PuntoReal] := 5;
+
+  Delta[6,DigitoReal] := 1; // Después del menos, debe venir un dígito
+  Delta[6,OtroReal] := 5;
+  Delta[6,PuntoReal] := 5;
+  Delta[6,MenosReal] := 5;
+
   Delta[1,DigitoReal] := 1;
   Delta[1,OtroReal] := 4;
   Delta[1,PuntoReal] := 2;
@@ -48,7 +57,6 @@ Begin
   Delta[3,DigitoReal] := 3;
   Delta[3,OtroReal] := 4;
   Delta[3,PuntoReal] := 5;
-
 End;
 
 Procedure AFConstCad(Var delta: TipoDeltaCadena);

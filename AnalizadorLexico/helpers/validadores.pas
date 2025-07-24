@@ -155,19 +155,18 @@ Begin
 End;
 
 Function EsConstanteReal(Var Fuente:FileOfChar;Var Control: Longint;Var Lexema:
-                         String)
-: Boolean;
+                         String): Boolean;
 
 Const 
   q0 = 0;
   F = [4];
 
 Function CarASimbReal(Car:Char): SigmaReal;
-
 Begin
   Case Car Of 
     '0'..'9'      : CarASimbReal := DigitoReal;
     '.': CarASimbReal := PuntoReal;
+    '-': CarASimbReal := MenosReal; // Nuevo símbolo para el autómata
     Else
       CarASimbReal := OtroReal
   End;
@@ -179,19 +178,30 @@ Var
   Delta: TipoDeltaReal;
   Car: Char;
 Begin
-    {Cargar la tabla de transiciones}
+  {Cargar la tabla de transiciones}
   AFConstReal(Delta);
   {Recorrer la cadena de entrada y cambiar estados}
   ControlAux := Control;
   EstadoActual := q0;
   Lexema := '';
+  LeerCar(Fuente, ControlAux, Car);
+
+  // Si el primer caracter es '-', lo agregamos al lexema y avanzamos
+  if Car = '-' then
+  begin
+    Lexema := '-';
+    ControlAux := ControlAux + 1;
+    LeerCar(Fuente, ControlAux, Car);
+  end;
+
+  // Ahora sigue el reconocimiento normal
   While (EstadoActual <> 4) And (EstadoActual <> 5) Do
     Begin
-      LeerCar(Fuente, ControlAux, Car);
       EstadoActual := Delta[EstadoActual,CarASimbReal(Car)];
       ControlAux := ControlAux + 1;
       If (EstadoActual <> 4) Then
         Lexema := Lexema+Car;
+      LeerCar(Fuente, ControlAux, Car);
     End;
   If EstadoActual In F Then
     Begin

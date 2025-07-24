@@ -1,0 +1,12 @@
+program suma; 
+    var 
+    i:float;
+    j:float;
+    suma:float;
+    {
+
+    i:=1;
+    j:=5;
+    suma:=i+j;
+    write(suma);
+}

@@ -5,10 +5,10 @@ var
   cant: float;
   letra: string;
 {
-  read(cadena, cadena);
-  i := 0;
+  read("ingrese la palabra ", cadena);
+  i := 1;
   cant := 0;
-  while i < long(cadena) {
+  while i <= long(cadena) {
     letra := substr(cadena, i, 1);
     if [letra = "a"] | [letra = "e"] | [letra = "i"] | [letra = "o"] | [letra = "u"] |
        [letra = "A"] | [letra = "E"] | [letra = "I"] | [letra = "O"] | [letra = "U"] {

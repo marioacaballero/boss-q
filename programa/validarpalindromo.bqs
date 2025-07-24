@@ -8,9 +8,9 @@ var
   letraJ: string;
   resultado: string;
 {
-  read(cadena, cadena);
-  i := 0;
-  j := long(cadena) - 1;
+  read("ingrese la cadena ", cadena);
+  i := 1;
+  j := long(cadena);
   esPal := 1;
 
   while i < j {

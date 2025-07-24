@@ -50,6 +50,7 @@ Begin
             Begin
               WriteLn('Se esperaba ', elem.simb, ' y se encontro ',complex);
               complex := ErrorSint;
+              Halt;
             End;
         End;
 
@@ -61,6 +62,7 @@ Begin
               WriteLn('Desde ', elem.simb,
                       ' no se puede derivar una cadena con ', complex);
               complex := ErrorSint;
+              Halt;
             End
           Else
             For i:= TAS[elem.simb,complex]^.cant Downto 1 Do
@@ -73,12 +75,19 @@ Begin
 
       If (elem.simb = Pesos) Then  // Para cuando es el ultimo de la pila
         If complex <> Pesos Then
-          complex := ErrorSint;
+          Begin
+            complex := ErrorSint;
+            WriteLn('Se esperaba ', complex, ' y se encontró fin de archivo');
+            Halt;
+          End;
 
     End;
 
   If complex = ErrorLex Then
-    WriteLn('Error lexico: ',lexema, ' es invalido');
+    Begin
+      WriteLn('Error lexico: ',lexema, ' es invalido');
+      Halt;
+    End;
 
   If complex = Pesos Then WriteLn('Compilacion exitosa de ', f)
 End;

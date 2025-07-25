@@ -349,6 +349,7 @@ Procedure evalExp7(Var arbol: t_arbol_derivacion; Var state: t_estado; op1:
                    t_valor; Var res: t_valor);
 
 Var op2: t_valor;
+  n: Integer;
 Begin
   If arbol^.cant <> 0 Then
     Begin
@@ -360,10 +361,21 @@ Begin
                   op2.t_typo);
           Halt;
         End;
-      If op2.v_real < 0 Then
+      If (Frac(op2.v_real) > 0) And (op2.v_real > 0) Then
         Begin
-          WriteLn('Error: Raíz de número negativo');
-          Halt;
+          n := Round(1 / op2.v_real);
+          // Solo si el exponente es exactamente 1/n
+          If Abs(op2.v_real - (1 / n)) < 0.00001 Then
+            Begin
+              If (op1.v_real < 0) And (n Mod 2 = 0) Then
+                Begin
+                  WriteLn(
+
+                     'Error: No se puede calcular raíz par de número negativo'
+                  );
+                  Halt;
+                End;
+            End;
         End;
       op2.v_real := Power(op1.v_real, op2.v_real);
       evalExp7(arbol^.Hijos[3], state, op2, res);
@@ -434,12 +446,12 @@ Begin
            End;
     Tmenos:
             Begin
+              evalExp4(arbol^.Hijos[2], state, op1);
               If op1.t_typo <> Tcreal Then
                 Begin
                   WriteLn('Error: Operación no válida para cadena');
                   Halt;
                 End;
-              evalExp4(arbol^.Hijos[2], state, op1);
               res.v_real := (-1) * op1.v_real;
               res.t_typo := Tcreal;
               res.v_cad := '';

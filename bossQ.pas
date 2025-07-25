@@ -14,7 +14,7 @@ Var
   f: string;
 Begin
   // obtener la ruta
-  f := './programa/' + GetEnvironmentVariable('FILE');
+  f := '.'+PathDelim+'programa'+PathDelim+GetEnvironmentVariable('FILE');
 
   // primero inicializo archivo
   Assign(fuente, f);

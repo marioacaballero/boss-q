@@ -48,6 +48,7 @@ Begin
             End
           Else
             Begin
+              Write('Error sintactico: ');
               WriteLn('Se esperaba ', elem.simb, ' y se encontro ',complex);
               complex := ErrorSint;
               Halt;
@@ -59,6 +60,7 @@ Begin
         Begin
           If TAS[elem.simb,complex] = Nil Then
             Begin
+              Write('Error sintactico: ');
               WriteLn('Desde ', elem.simb,
                       ' no se puede derivar una cadena con ', complex);
               complex := ErrorSint;
@@ -77,6 +79,7 @@ Begin
         If complex <> Pesos Then
           Begin
             complex := ErrorSint;
+            Write('Error sintactico: ');
             WriteLn('Se esperaba ', complex, ' y se encontró fin de archivo');
             Halt;
           End;

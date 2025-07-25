@@ -18,6 +18,7 @@ var
         resultado:= precio-(precio*descuento)/100;
         cadena := "su precio con descuento aplicado es: ";
         write(cadena,resultado);
-        read("presione s para continuar", cadena2);
+        read("ingrese 's' para continuar: ", cadena2);
+        write("");
         };
     }

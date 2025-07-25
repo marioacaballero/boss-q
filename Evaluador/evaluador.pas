@@ -362,21 +362,12 @@ Begin
           Halt;
         End;
       If (Frac(op2.v_real) > 0) And (op2.v_real > 0) Then
-        Begin
-          n := Round(1 / op2.v_real);
-          // Solo si el exponente es exactamente 1/n
-          If Abs(op2.v_real - (1 / n)) < 0.00001 Then
-            Begin
-              If (op1.v_real < 0) And (n Mod 2 = 0) Then
-                Begin
-                  WriteLn(
-
-                     'Error: No se puede calcular raíz par de número negativo'
-                  );
-                  Halt;
-                End;
-            End;
-        End;
+        If op1.v_real < 0 Then
+          Begin
+            write('Error: No se puede ');
+            WriteLn('calcular raíz de un numero negativo');
+            Halt;
+          End;
       op2.v_real := Power(op1.v_real, op2.v_real);
       evalExp7(arbol^.Hijos[3], state, op2, res);
     End

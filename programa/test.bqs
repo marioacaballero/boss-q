@@ -1,0 +1,17 @@
+program test;
+
+var
+  i: float;
+  j: float;
+  suma: float;
+
+  {
+    i:= 4;
+    j:= 6;
+    suma:= -9 ^ (1/3);
+    if![i!=j]|[i=5]&j=6{
+      write("entre");
+    } else {
+      write(suma);
+    };
+  }

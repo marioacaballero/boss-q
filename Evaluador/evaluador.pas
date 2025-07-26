@@ -245,15 +245,14 @@ Begin
       Case (arbol^.Hijos[1]^.Simbolo) Of 
         Tmas:
               Begin
+                evalExp2(arbol^.Hijos[2], state, op2);
                 If (op1.t_typo = Tcreal) And (op2.t_typo = Tcreal) Then
                   Begin
-                    evalExp2(arbol^.Hijos[2], state, op2);
                     op2.v_real := op2.v_real + op1.v_real;
                     evalExp5(arbol^.Hijos[3], state, op2, res);
                   End
                 Else If (op1.t_typo = Tccadena) And (op2.t_typo = Tccadena) Then
                        Begin
-                         evalExp2(arbol^.Hijos[2], state, op2);
                          op2.v_cad := op2.v_cad + op1.v_cad;
                          evalExp5(arbol^.Hijos[3], state, op2, res);
                        End
@@ -266,13 +265,13 @@ Begin
               End;
         Tmenos:
                 Begin
+                  evalExp2(arbol^.Hijos[2], state, op2);
                   If (op1.t_typo <> Tcreal) Or (op2.t_typo <> Tcreal) Then
                     Begin
                       WriteLn('Error: Operación no válida entre tipos ',
                               op1.t_typo, ' y ', op2.t_typo);
                       Halt;
                     End;
-                  evalExp2(arbol^.Hijos[2], state, op2);
                   op2.v_real := op1.v_real - op2.v_real;
                   evalExp5(arbol^.Hijos[3], state, op2, res);
                 End;

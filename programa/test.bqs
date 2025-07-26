@@ -2,16 +2,83 @@ program test;
 
 var
   i: float;
-  j: float;
-  suma: float;
-
+  j: string;
+  cad: string;
+  car: string;
+  q: string;
+  qaux: string;
   {
-    i:= 4;
-    j:= 6;
-    suma:= 4 ^ 0.5;
-    if![i!=j]|[i=5]&j=6{
-      write("entre");
-    } else {
-      write(suma);
+    j := "s";
+    while j = "s" {
+      i := 1;
+      q := "A";
+      read("ingrese cad: ", cad);
+      while i <= long(cad) {
+        car := substr(cad, i, 1);
+        if car = "a" {
+          if q = "A" {
+            qaux := "B";
+          };
+          if q = "B"{
+            qaux := "D";
+          };
+          if q = "C"{
+            qaux := "B";
+          };
+          if q = "D" {
+            qaux := "D";
+          };
+          if q = "E" {
+            qaux := "G";
+          };
+          if q = "F" {
+            qaux := "D";
+          };
+          if q = "G" {
+            qaux := "H";
+          };
+          if q = "H" {
+            qaux:= "H";
+          };
+        } else{
+          if q = "A" {
+            qaux := "C";
+          };
+          if q = "C" {
+            qaux := "E";
+          };
+          if q = "B" {
+            qaux := "C";
+          };
+          if q = "C" {
+            qaux := "E";
+          };
+          if q = "D" {
+            qaux := "F";
+          };
+          if q = "E" {
+            qaux := "E";
+          };
+          if q = "F" {
+            qaux := "H";
+          };
+          if q = "G" {
+            qaux := "E";
+          };
+          if q = "H" {
+            qaux := "H";
+          };
+        };
+        q := qaux;
+        i := i + 1;
+      };
+      if q = "H" {
+        write("cadena aceptada");
+      } else {
+        write("cadena rechazada");
+      };
+      write(" ");
+      read("ingrese s para continuar: ", j);
+      write(" ");
     };
   }

@@ -6,7 +6,7 @@ var
 
 {
   pepe := "casa";
-  juan := "hola";
+  juan := 3;
   if [pato <= juan] & [pato > juan] {
     write(substr("test ", 1, 3));
   }

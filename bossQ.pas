@@ -14,14 +14,14 @@ Var
   f: string;
 Begin
   // obtener la ruta
-  f := '.'+PathDelim+'programa'+PathDelim+GetEnvironmentVariable('FILE');
+  f := '.'+PathDelim+'programa'+PathDelim+paramstr(1);
 
   // primero inicializo archivo
   Assign(fuente, f);
   Reset(fuente);
 
   // se lo paso al Sint
-  ASint(raiz, fuente, GetEnvironmentVariable('FILE'));
+  ASint(raiz, fuente, paramstr(1));
 
   // evaluador
   evalPrograma(raiz);

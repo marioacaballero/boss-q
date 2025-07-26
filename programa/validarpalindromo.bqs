@@ -12,7 +12,6 @@ var
   i := 1;
   j := long(cadena);
   esPal := 1;
-
   while i < j {
     letraI := substr(cadena, i, 1);
     letraJ := substr(cadena, j, 1);
@@ -22,12 +21,10 @@ var
     i := i + 1;
     j := j - 1;
   };
-
   if esPal = 1 {
     resultado := "Es palíndromo";
   } else {
     resultado := "No es palíndromo";
   };
-
   write(resultado);
 }

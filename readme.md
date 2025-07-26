@@ -1,7 +1,10 @@
 # Boss-Q
 
-boss-q es un lenguaje imperativo sencillo con tipado estático que acepta variables de tipo string y float. Los programas escritos en boss-q se dividen en una sección de declaración de variables y un bloque de sentencias delimitado por los símbolos { }.
-Es adecuado para aprender estructuras básicas de programación imperativa, integrando manipulación de cadenas y cálculos numéricos de manera clara y expresiva.
+boss-q es un lenguaje imperativo sencillo con tipado estático que acepta variables de tipo string y float. 
+
+Los programas escritos en __boss-q__ se dividen en una sección de declaración de variables y un bloque de sentencias delimitado por { }.
+
+Es un lenguaje adecuado para aprender estructuras básicas de programación imperativa, integrando manipulación de cadenas y cálculos numéricos de manera clara y expresiva.
 
 ## Uso básico:
 
@@ -12,30 +15,30 @@ Es adecuado para aprender estructuras básicas de programación imperativa, inte
 
   ```
       program miPrograma;
-     {};
+       {};
   ```
 
   ### Compilar/interpretar
 
-  - Desde la línea de comandos:
+  Desde la línea de comandos:
 
   ```
   .\bossQ miPrograma.bqs
   ```
 
-  - El intérprete mostrará prompts para cada read y mostrará salida por cada write.
+  El intérprete mostrará prompts para cada read y mostrará salida por cada write.
 
   ### Ejemplos
 
-  - Se pueden encontrar dentro de la carpeta programa.
+  Se pueden encontrar dentro de la carpeta [programa](https://github.com/marioacaballero/boss-q/tree/master/programa).
 
 ## Secciones del programa
 
   ### Declaración de variables
 
-  - Solo dos tipos: Float y String.
-  - Todas las variables deben aparecer en esta sección para definir su tipo..
-  - Las cadenas (String) pueden tener hasta 1000 caracteres.
+  - Solo dos tipos: float y string.
+  - Todas las variables deben aparecer en esta sección para definir su tipo.
+  - Las cadenas (string) pueden tener hasta 1000 caracteres.
   - Las constantes de cadena se toman encerrando su valor entre comilla doble (“). Por ejemplo, “hola mundo”.
 
   ### Cuerpo de sentencias
@@ -45,53 +48,62 @@ Es adecuado para aprender estructuras básicas de programación imperativa, inte
 
   ### Tipos de sentencias
 
-    #### Asignación
+   #### Asignación
 
-    __id := <expresión>;__
+     id := <expresión>;
 
-    - El lado derecho puede ser:
-    - Expresión aritmética sobre Float (soporta +, -, *, /, ^ (potencia), con precedencias y asociatividad izquierda definidas).
+   - El lado derecho puede ser:
+   - Expresión aritmética sobre float (soporta +, -, *, /, ^ (potencia), con precedencias y asociatividad izquierda definidas).
 
-    #### Operación de cadenas:
+   #### Operación de cadenas:
 
-    Concatenación: s1 + s2
+   Concatenación: s1 + s2
     
-     - Subcadena: __substr(s, inicio, final)__
-     - Búsqueda: __find(s1, s2)__ → devuelve posición si se encontró o -1
-     - Longitud: __long(s)__
+   ##### Subcadena 
+   
+     substr(s, inicio, final)
+     
+   #### Búsqueda
+     
+     find(s1, s2)
+   
+   Devuelve posición si se encontró o -1
+  
+   #### Longitud
+   
+     long(s)
 
-    #### Lectura
+   #### Lectura
 
-    __read("Mensaje: ", id);__
+     read("Mensaje: ", id);
     
-    - Muestra la cadena literal al usuario y asigna a id el valor ingresado (sea Float o String).
+   Muestra la cadena literal al usuario y asigna a id el valor ingresado (sea Float o String).
     
-    #### Escritura
+   #### Escritura
     
-    __write(expr1, expr2, ...);__
+     write(expr1, expr2, ...);
     
-    - Imprime en consola cadenas, valores numéricos o variables de tipo cadena.
+   Imprime en consola cadenas, valores numéricos o variables de tipo cadena.
     
-    #### Condicional
+   #### Condicional
 
-    __if <condición> {__
-    __} else {__
-    __};__
+     if <condición> {
+     } else {
+     };
     
-    _ Si la sentencia del else no se usa se puede eliminar y agregar el ; al final del cuerpo del “if”.
+   Si la sentencia del else no se usa se puede eliminar y agregar el ; al final del cuerpo del “if”.
     
-    #### Ciclo “Mientras”
+   #### Ciclo “Mientras”
     
-    __while <condición> {__
-    __};__
+     while <condición> {
+     };
     
-    - Evalúa la condición antes de cada iteración.
+   Evalúa la condición antes de cada iteración.
 
-    #### Ciclo “Para”
-
+   
   ## Operadores relacionales disponibles
 
-  - Todos son aplicables a variables de tipo float o string.
+  Todos son aplicables a variables de tipo float o string.
 
   - [x] =
   - [x] !=
@@ -101,7 +113,7 @@ Es adecuado para aprender estructuras básicas de programación imperativa, inte
 
  ## Operadores lógicos
 
- - Aplicables para resultados de los operadores relacionales.
+ Aplicables para resultados de los operadores relacionales.
 
  - [x] & (and)
  - [x] | (or)
@@ -110,6 +122,7 @@ Es adecuado para aprender estructuras básicas de programación imperativa, inte
 ## Errores comunes
 
 - Uso de variable no declarada.
+- Uso de caracter inválido.
 - Incompatibilidad de tipos en asignaciones o expresiones.
-- Inconsistencia con la sintaxis, por ejemplo, la falta de un “;”
+- Inconsistencia con la sintaxis, por ejemplo, la falta de un “;” .
 

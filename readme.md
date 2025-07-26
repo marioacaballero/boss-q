@@ -1,6 +1,10 @@
 # Boss-Q
 
-boss-q es un lenguaje imperativo sencillo con tipado estático que acepta variables de tipo string y float. 
+<p align="center">
+  <img src="logo.png" img src="img/logo.png" width="50%">
+</p>
+
+Boss-Q es un lenguaje imperativo sencillo con tipado estático que acepta variables de tipo string y float. 
 
 Los programas escritos en __boss-q__ se dividen en una sección de declaración de variables y un bloque de sentencias delimitado por { }.
 
